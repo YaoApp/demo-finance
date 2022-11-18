@@ -1,0 +1,225 @@
+{
+  "name": "用户",
+  "action": {
+    "bind": {
+      "model": "contact.user",
+      "option": {
+        "withs": { "departments": {} }
+      }
+    },
+    "after:search": "scripts.contact.user.AfterSearch"
+  },
+  "layout": {
+    "primary": "id",
+    "header": {
+      "preset": {},
+      "actions": []
+    },
+    "filter": {
+      "columns": [
+        {
+          "name": "姓名",
+          "width": 4
+        }
+      ],
+      "actions": [
+        {
+          "icon": "icon-plus",
+          "width": 3,
+          "action": {
+            "Common.openModal": {
+              "width": 640,
+              "Form": {
+                "type": "edit",
+                "model": "contact.user"
+              }
+            }
+          },
+          "title": "添加"
+        }
+      ]
+    },
+    "table": {
+      "columns": [
+        {
+          "width": 200,
+          "name": "姓名"
+        },
+        {
+          "name": "工号",
+          "width": 250
+        },
+        {
+          "name": "所属部门",
+          "width": 250
+        },
+        {
+          "name": "电子邮箱",
+          "width": 200
+        },
+        {
+          "name": "电话号码",
+          "width": 200
+        },
+        {
+          "name": "职位",
+          "width": 250
+        },
+        {
+          "width": 250,
+          "name": "状态"
+        }
+      ],
+      "operation": {
+        "fold": false,
+        "actions": [
+          {
+            "action": {
+              "Common.openModal": {
+                "width": 640,
+                "Form": {
+                  "type": "view",
+                  "model": "contact.user"
+                }
+              }
+            },
+            "title": "查看",
+            "icon": "icon-eye"
+          },
+          {
+            "title": "编辑",
+            "icon": "icon-edit-2",
+            "action": {
+              "Common.openModal": {
+                "Form": {
+                  "type": "edit",
+                  "model": "contact.user"
+                }
+              }
+            }
+          },
+          {
+            "icon": "icon-trash-2",
+            "action": {
+              "Table.delete": {}
+            },
+            "style": "danger",
+            "confirm": {
+              "title": "提示",
+              "desc": "确认删除，删除后数据无法恢复？"
+            },
+            "title": "删除"
+          }
+        ]
+      }
+    }
+  },
+  "fields": {
+    "filter": {
+      "姓名": {
+        "bind": "where.name.match",
+        "edit": {
+          "type": "Input",
+          "compute": "Trim",
+          "props": {
+            "placeholder": "请输入姓名搜索"
+          }
+        }
+      }
+    },
+    "table": {
+      "姓名": {
+        "view": {
+          "props": {},
+          "type": "Text"
+        },
+        "edit": {
+          "type": "Input",
+          "bind": "name",
+          "props": {}
+        },
+        "bind": "name"
+      },
+      "工号": {
+        "bind": "job_number",
+        "view": {
+          "type": "Text",
+          "props": {}
+        },
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "job_number"
+        }
+      },
+      "所属部门": {
+        "bind": "departments.name",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "电子邮箱": {
+        "edit": {
+          "bind": "email",
+          "props": {},
+          "type": "Input"
+        },
+        "bind": "email",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "电话号码": {
+        "view": {
+          "type": "Text",
+          "props": {}
+        },
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "mobile"
+        },
+        "bind": "mobile"
+      },
+      "职位": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "position"
+        },
+        "bind": "position",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+
+      "状态": {
+        "edit": {
+          "bind": "status",
+          "props": {
+            "options": [
+              {
+                "labe": "::启用",
+                "value": "启用"
+              },
+              {
+                "labe": "::停用",
+                "value": "停用"
+              }
+            ],
+            "placeholder": "请选择"
+          },
+          "type": "Select"
+        },
+        "bind": "status",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      }
+    }
+  }
+}

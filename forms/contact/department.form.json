@@ -1,0 +1,107 @@
+{
+  "action": {
+    "bind": {
+      "model": "contact.department",
+      "option": {
+        "withs": { "parent": {} }
+      }
+    }
+  },
+  "layout": {
+    "form": {
+      "sections": [
+        {
+          "columns": [
+            {
+              "width": 12,
+              "name": "部门名称"
+            },
+            {
+              "width": 12,
+              "name": "排序"
+            },
+            {
+              "name": "上级部门",
+              "width": 24
+            }
+          ]
+        }
+      ],
+      "props": {}
+    },
+    "primary": "id",
+    "operation": {
+      "preset": {
+        "save": {
+          "back": true
+        },
+        "back": {}
+      },
+      "actions": [
+        {
+          "confirm": {
+            "title": "提示",
+            "desc": "确认删除，删除后数据无法恢复？"
+          },
+          "title": "删除",
+          "icon": "icon-trash-2",
+          "action": {
+            "Form.delete": {
+              "pathname": "/x/Table/contact.department"
+            }
+          },
+          "style": "danger"
+        }
+      ]
+    }
+  },
+  "fields": {
+    "form": {
+      "部门名称": {
+        "view": {
+          "props": {},
+          "type": "Text"
+        },
+        "edit": {
+          "type": "Input",
+          "bind": "name",
+          "props": {}
+        },
+        "bind": "name"
+      },
+      "排序": {
+        "bind": "order",
+        "view": {
+          "type": "Text",
+          "props": {}
+        },
+        "edit": {
+          "props": {
+            "type": "number"
+          },
+          "type": "Input",
+          "bind": "order"
+        }
+      },
+      "上级部门": {
+        "edit": {
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "scripts.contact.department.GetSelect",
+                "query": { "id": ":id" }
+              }
+            }
+          },
+          "type": "Select"
+        },
+        "bind": "parent_id",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      }
+    }
+  },
+  "name": "部门"
+}

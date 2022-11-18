@@ -1,0 +1,428 @@
+{
+  "action": {
+    "bind": {
+      "model": "contract",
+      "option": {
+        "withs": { "project": {}, "first": {} }
+      }
+    }
+  },
+  "layout": {
+    "form": {
+      "sections": [
+        {
+          "columns": [
+            {
+              "width": 8,
+              "name": "所属项目"
+            },
+            {
+              "width": 8,
+              "name": "合同名称"
+            },
+            {
+              "name": "合同编号",
+              "width": 8
+            },
+
+            {
+              "name": "甲方",
+              "width": 8
+            },
+            {
+              "name": "甲方负责人",
+              "width": 8
+            },
+            {
+              "name": "甲方负责人电话",
+              "width": 8
+            },
+            {
+              "name": "乙方",
+              "width": 8
+            },
+
+            {
+              "name": "乙方负责人",
+              "width": 8
+            },
+
+            {
+              "name": "乙方负责人电话",
+              "width": 8
+            },
+            {
+              "name": "类型",
+              "width": 8
+            },
+            {
+              "name": "状态",
+              "width": 8
+            },
+            {
+              "name": "合同金额",
+              "width": 8
+            },
+
+            {
+              "name": "税率%",
+              "width": 8
+            },
+            {
+              "name": "签订日期",
+              "width": 8
+            },
+            {
+              "name": "到期日期",
+              "width": 8
+            },
+            {
+              "name": "合同首付款",
+              "width": 12
+            },
+            {
+              "name": "合同尾款",
+              "width": 12
+            },
+            {
+              "name": "合同事项",
+              "width": 24
+            },
+            {
+              "name": "合同主要内容",
+              "width": 24
+            },
+
+            {
+              "name": "备注",
+              "width": 24
+            },
+            {
+              "name": "附件",
+              "width": 24
+            }
+          ]
+        }
+      ],
+      "props": {}
+    },
+    "primary": "id",
+    "operation": {
+      "preset": {
+        "save": {
+          "back": true
+        },
+        "back": {}
+      },
+      "actions": [
+        {
+          "confirm": {
+            "title": "提示",
+            "desc": "确认删除，删除后数据无法恢复？"
+          },
+          "title": "删除",
+          "icon": "icon-trash-2",
+          "action": {
+            "Form.delete": {
+              "pathname": "/x/Table/contract.contract"
+            }
+          },
+          "style": "danger"
+        }
+      ]
+    }
+  },
+  "fields": {
+    "form": {
+      "合同名称": {
+        "view": {
+          "props": {},
+          "type": "Text"
+        },
+        "edit": {
+          "type": "Input",
+          "bind": "name",
+          "props": {}
+        },
+        "bind": "name"
+      },
+      "合同编号": {
+        "bind": "contract_sn",
+        "view": {
+          "type": "Text",
+          "props": {}
+        },
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "contract_sn"
+        }
+      },
+      "所属项目": {
+        "edit": {
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "scripts.project.GetSelect",
+                "query": {}
+              }
+            }
+          },
+          "type": "Select",
+          "bind": "project_id"
+        },
+        "bind": "project_id"
+      },
+
+      "甲方": {
+        "edit": {
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "scripts.company.GetSelect",
+                "query": {}
+              }
+            }
+          },
+          "type": "Select",
+          "bind": "first_company_id"
+        },
+        "bind": "first_company_id",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "乙方": {
+        "edit": {
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "scripts.company.GetSelect",
+                "query": {}
+              }
+            }
+          },
+          "type": "Select",
+          "bind": "second_company_id"
+        },
+        "bind": "second_company_id",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "甲方负责人": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "first_user"
+        },
+        "bind": "first_user",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "乙方负责人": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "second_user"
+        },
+        "bind": "second_user",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "甲方负责人电话": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "first_mobile"
+        },
+        "bind": "first_mobile",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "乙方负责人电话": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "second_mobile"
+        },
+        "bind": "second_mobile",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "合同金额": {
+        "edit": {
+          "props": {
+            "type": "number"
+          },
+          "type": "Input",
+          "bind": "total_money"
+        },
+        "bind": "total_money",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+
+      "税率%": {
+        "edit": {
+          "props": {
+            "type": "number"
+          },
+          "type": "Input",
+          "bind": "rate"
+        },
+        "bind": "rate",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "签订日期": {
+        "edit": {
+          "props": { "format": "YYYY-MM-DD" },
+          "type": "DatePicker",
+          "bind": "sign_date"
+        },
+        "bind": "sign_date"
+      },
+      "到期日期": {
+        "edit": {
+          "props": { "format": "YYYY-MM-DD" },
+          "type": "DatePicker",
+          "bind": "end_date"
+        },
+        "bind": "end_date"
+      },
+
+      "状态": {
+        "edit": {
+          "bind": "status",
+          "props": {
+            "options": [
+              {
+                "labe": "::已签订",
+                "value": "已签订"
+              },
+              {
+                "labe": "::执行中",
+                "value": "执行中"
+              },
+              {
+                "labe": "::已完成",
+                "value": "已完成"
+              }
+            ],
+            "placeholder": "请选择"
+          },
+          "type": "Select"
+        },
+        "bind": "status",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      },
+      "类型": {
+        "edit": {
+          "bind": "type",
+          "props": {
+            "options": [
+              {
+                "labe": "::总包合同",
+                "value": "总包合同"
+              },
+              {
+                "labe": "::分包合同",
+                "value": "分包合同"
+              }
+            ],
+            "placeholder": "请选择"
+          },
+          "type": "Select"
+        },
+        "bind": "type",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      },
+      "合同主要内容": {
+        "edit": {
+          "props": { "rows": 5 },
+          "type": "TextArea",
+          "bind": "content"
+        },
+        "bind": "content"
+      },
+      "合同事项": {
+        "edit": {
+          "props": { "rows": 5 },
+          "type": "TextArea",
+          "bind": "condition"
+        },
+        "bind": "condition"
+      },
+      "备注": {
+        "edit": {
+          "props": { "rows": 5 },
+          "type": "TextArea",
+          "bind": "remark"
+        },
+        "bind": "remark"
+      },
+      "合同首付款": {
+        "edit": {
+          "props": {
+            "type": "number"
+          },
+          "type": "Input",
+          "bind": "first_money"
+        },
+        "bind": "first_money",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "合同尾款": {
+        "edit": {
+          "props": {
+            "type": "number"
+          },
+          "type": "Input",
+          "bind": "final_money"
+        },
+        "bind": "final_money",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "附件": {
+        "edit": {
+          "props": {
+            "filetype": "file",
+            "$api": { "process": "fs.system.Upload" }
+          },
+          "type": "Upload",
+
+          "bind": "file"
+        },
+        "bind": "file"
+      }
+    }
+  },
+  "name": "合同"
+}

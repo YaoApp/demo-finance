@@ -1,0 +1,340 @@
+{
+  "action": {
+    "bind": {
+      "model": "finance_system.fund_turnover",
+      "option": {
+        "withs": { "account": {}, "user": {}, "company": {} }
+      }
+    },
+    "before:save": "scripts.rmb.BeforeSave"
+  },
+  "layout": {
+    "form": {
+      "sections": [
+        {
+          "columns": [
+            {
+              "name": "对应客户",
+              "width": 12
+            },
+            {
+              "name": "单据编号",
+              "width": 12
+            },
+            {
+              "name": "日期",
+              "width": 12
+            },
+            {
+              "name": "账户",
+              "width": 12
+            },
+
+            {
+              "name": "摘要",
+              "width": 12
+            },
+            {
+              "width": 12,
+              "name": "金额"
+            },
+            {
+              "width": 12,
+              "name": "金额大写"
+            },
+            {
+              "width": 12,
+              "name": "经办人"
+            },
+            {
+              "width": 12,
+              "name": "发票状态"
+            },
+            {
+              "width": 12,
+              "name": "分类一"
+            },
+            {
+              "width": 12,
+              "name": "分类二"
+            },
+            {
+              "width": 12,
+              "name": "分类三"
+            }
+          ]
+        }
+      ],
+      "props": {}
+    },
+    "primary": "id",
+    "operation": {
+      "preset": {
+        "save": {
+          "back": true
+        },
+        "back": {}
+      },
+      "actions": [
+        {
+          "confirm": {
+            "title": "提示",
+            "desc": "确认删除，删除后数据无法恢复？"
+          },
+          "title": "删除",
+          "icon": "icon-trash-2",
+          "action": {
+            "Form.delete": {
+              "pathname": "/x/Table/finance_system.fund_turnover"
+            }
+          },
+          "style": "danger"
+        }
+      ]
+    }
+  },
+  "fields": {
+    "form": {
+      "ID": {
+        "bind": "id",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "对应客户": {
+        "edit": {
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "scripts.company.GetSelect",
+                "query": {}
+              }
+            }
+          },
+          "type": "Select",
+          "bind": "company_id"
+        },
+        "bind": "company_id",
+        "view": {
+          "bind": "company.name",
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "单据编号": {
+        "bind": "order_sn",
+        "view": {
+          "props": {},
+          "type": "Text"
+        },
+        "edit": {
+          "props": {},
+          "type": "Input"
+        }
+      },
+      "日期": {
+        "bind": "pay_at",
+        "view": {
+          "props": { "format": "YYYY-MM-DD" },
+          "type": "Text"
+        },
+        "edit": {
+          "props": { "format": "YYYY-MM-DD" },
+          "type": "DatePicker",
+          "bind": "pay_at"
+        }
+      },
+      "账户": {
+        "edit": {
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "scripts.account.GetSelect",
+                "query": {}
+              }
+            }
+          },
+          "type": "Select",
+          "bind": "account_id"
+        },
+        "bind": "account_id",
+        "view": {
+          "bind": "account.name",
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "摘要": {
+        "bind": "summary",
+        "view": {
+          "props": {},
+          "type": "Text"
+        },
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "summary"
+        }
+      },
+      "金额": {
+        "edit": {
+          "props": {
+            "type": "number"
+          },
+          "type": "Input",
+          "bind": "total_money"
+        },
+        "bind": "total_money",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+
+      "经办人": {
+        "edit": {
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "scripts.contact.user.GetSelect",
+                "query": {}
+              }
+            }
+          },
+          "type": "Select"
+        },
+        "bind": "user_id",
+        "view": {
+          "bind": "user.name",
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "审核": {
+        "edit": {
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "scripts.contact.user.GetSelect",
+                "query": {}
+              }
+            }
+          },
+          "type": "Select"
+        },
+        "bind": "audit_id",
+        "view": {
+          "bind": "audit.name",
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "金额大写": {
+        "edit": {
+          "props": { "disabled": true },
+          "type": "Input",
+          "bind": "rmb_string"
+        },
+        "bind": "rmb_string",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "分类一": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "type1"
+        },
+        "bind": "type1",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "流水分类": {
+        "edit": {
+          "props": {
+            "options": [
+              {
+                "labe": "::收入",
+                "value": "收入"
+              },
+              {
+                "labe": "::支出",
+                "value": "支出"
+              },
+              {
+                "labe": "::借用",
+                "value": "借用"
+              }
+            ],
+            "placeholder": "请选择"
+          },
+          "type": "Select"
+        },
+        "bind": "type",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      },
+      "发票状态": {
+        "edit": {
+          "props": {
+            "options": [
+              {
+                "labe": "::已开",
+                "value": "已开"
+              },
+              {
+                "labe": "::未开",
+                "value": "未开"
+              },
+              {
+                "labe": "::无需发票",
+                "value": "无需发票"
+              }
+            ],
+            "placeholder": "请选择"
+          },
+          "type": "Select"
+        },
+        "bind": "status",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      },
+      "分类二": {
+        "edit": {
+          "props": {
+            "type": "number"
+          },
+          "type": "Input",
+          "bind": "type2"
+        },
+        "bind": "type2",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "分类三": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "type3"
+        },
+        "bind": "type3",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      }
+    }
+  },
+  "name": "资金流水"
+}

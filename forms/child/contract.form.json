@@ -1,0 +1,54 @@
+{
+  "action": {
+    "bind": {
+      "model": "contract",
+      "option": {
+        "withs": {}
+      }
+    },
+    "find": {
+      "guard": "-",
+      "process": "scripts.contract.ChildFind"
+    }
+  },
+  "layout": {
+    "form": {
+      "sections": [
+        {
+          "columns": [
+            {
+              "width": 24,
+              "name": "合同"
+            }
+          ]
+        }
+      ],
+      "props": {}
+    },
+    "primary": "id",
+    "operation": {
+      "preset": {
+        "save": {
+          "back": true
+        },
+        "back": {}
+      },
+      "actions": []
+    }
+  },
+  "fields": {
+    "form": {
+      "合同": {
+        "bind": "id",
+        "edit": {
+          "type": "Table",
+          "props": {
+            "model": "contract.contract",
+            "query": { "where.project_id.eq": ":id" }
+          }
+        }
+      }
+    }
+  },
+  "name": "合同"
+}

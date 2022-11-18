@@ -1,0 +1,143 @@
+{
+  "name": "财务数据",
+  "config": {
+    "full": false
+  },
+  "action": {
+    "before:data": "scripts.stat.BeforeData",
+    "data": {
+      "process": "scripts.stat.Finance",
+      "default": ["2022-09-20"]
+    },
+    "after:data": "scripts.stat.AfterData"
+  },
+  "layout": {
+    "operation": {
+      "actions": []
+    },
+    "filter": {
+      "columns": []
+    },
+    "chart": {
+      "columns": [
+        {
+          "name": "现有资金",
+          "width": 12
+        },
+        {
+          "name": "债务债权未回款金额",
+          "width": 12
+        },
+        {
+          "name": "工资",
+          "width": 12
+        },
+        {
+          "name": "资金流水",
+          "width": 12
+        },
+
+        {
+          "name": "预计增值税",
+          "width": 12
+        },
+        {
+          "name": "预计附加税额",
+          "width": 12
+        }
+      ]
+    }
+  },
+  "fields": {
+    "filter": {
+      "时间区间": {
+        "bind": "range",
+        "edit": {
+          "type": "RangePicker",
+          "props": {}
+        }
+      },
+      "状态": {
+        "bind": "status",
+        "edit": {
+          "type": "Select",
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "models.pet.Get",
+                "query": {
+                  "select": "name,status",
+                  "limit": 2
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "chart": {
+      "现有资金": {
+        "bind": "money_count",
+        "link": "/x/Table/finance_system.account",
+        "view": {
+          "type": "Number",
+          "props": {
+            "unit": "元"
+          }
+        }
+      },
+      "债务债权未回款金额": {
+        "bind": "debt_count",
+        "link": "/x/Table/finance_system.debt",
+        "view": {
+          "type": "Number",
+          "props": {
+            "unit": "元"
+          }
+        }
+      },
+      "工资": {
+        "bind": "salary_count",
+        "link": "/x/Table/finance_system.salary",
+        "view": {
+          "type": "Number",
+          "props": {
+            "unit": "元"
+          }
+        }
+      },
+      "资金流水": {
+        "bind": "fund_turnover_count",
+        "link": "/x/Table/finance_system.fund_turnover",
+        "view": {
+          "type": "Number",
+          "props": {
+            "unit": "元"
+          }
+        }
+      },
+      "预计增值税": {
+        "bind": "incr_tax",
+        "link": "/x/Table/finance_system.tax",
+
+        "view": {
+          "type": "Number",
+          "props": {
+            "unit": "元"
+          }
+        }
+      },
+      "预计附加税额": {
+        "bind": "add_tax",
+        "link": "/x/Table/finance_system.tax",
+
+        "view": {
+          "type": "Number",
+          "props": {
+            "unit": "元"
+          }
+        }
+      }
+    }
+  }
+}

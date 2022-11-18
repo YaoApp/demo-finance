@@ -1,0 +1,217 @@
+{
+  "action": {
+    "bind": {
+      "model": "project",
+      "option": {
+        "withs": { "user": {} }
+      }
+    },
+    "before:save": "scripts.project.BeforeSave"
+  },
+  "layout": {
+    "form": {
+      "sections": [
+        {
+          "columns": [
+            {
+              "width": 12,
+              "name": "项目名称"
+            },
+            {
+              "width": 12,
+              "name": "项目编号"
+            },
+            {
+              "name": "负责人",
+              "width": 12
+            },
+            {
+              "name": "负责人手机号码",
+              "width": 12
+            },
+            {
+              "name": "项目地址",
+              "width": 12
+            },
+            {
+              "name": "项目简介",
+              "width": 24
+            },
+            {
+              "name": "备注",
+              "width": 24
+            },
+            {
+              "name": "附件",
+              "width": 24
+            }
+          ]
+        }
+      ],
+      "props": {}
+    },
+    "primary": "id",
+    "operation": {
+      "preset": {
+        "save": {
+          "back": true
+        },
+        "back": {}
+      },
+      "actions": [
+        {
+          "confirm": {
+            "title": "提示",
+            "desc": "确认删除，删除后数据无法恢复？"
+          },
+          "title": "删除",
+          "icon": "icon-trash-2",
+          "action": {
+            "Form.delete": {
+              "pathname": "/x/Table/project.plan"
+            }
+          },
+          "style": "danger"
+        }
+      ]
+    }
+  },
+  "fields": {
+    "form": {
+      "项目名称": {
+        "view": {
+          "props": {},
+          "type": "Text"
+        },
+        "edit": {
+          "type": "Input",
+          "bind": "name",
+          "props": {}
+        },
+        "bind": "name"
+      },
+      "项目编号": {
+        "bind": "project_sn",
+        "view": {
+          "type": "Text",
+          "props": {}
+        },
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "project_sn"
+        }
+      },
+      "负责人": {
+        "edit": {
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "scripts.contact.user.GetSelect",
+                "query": {}
+              }
+            }
+          },
+          "type": "Select",
+          "bind": "user_id"
+        },
+        "bind": "user_id",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "负责人手机号码": {
+        "edit": {
+          "bind": "mobile",
+          "props": {},
+          "type": "Input"
+        },
+        "bind": "mobile",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "所属部门": {
+        "view": {
+          "type": "Text",
+          "props": {}
+        },
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "department_nanme"
+        },
+        "bind": "department_nanme"
+      },
+
+      "项目地址": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "address"
+        },
+        "bind": "address"
+      },
+      "项目简介": {
+        "edit": {
+          "props": { "rows": 5 },
+          "type": "TextArea",
+          "bind": "introduction"
+        },
+        "bind": "introduction"
+      },
+      "备注": {
+        "edit": {
+          "props": { "rows": 5 },
+          "type": "TextArea",
+          "bind": "remark"
+        },
+        "bind": "remark"
+      },
+      "附件": {
+        "edit": {
+          "props": {
+            "filetype": "file",
+            "$api": { "process": "fs.system.Upload" }
+          },
+          "type": "Upload",
+
+          "bind": "file"
+        },
+        "bind": "file"
+      },
+
+      "状态": {
+        "edit": {
+          "bind": "status",
+          "props": {
+            "options": [
+              {
+                "labe": "::已通过",
+                "value": "已通过"
+              },
+              {
+                "labe": "::已中标",
+                "value": "已中标"
+              },
+              {
+                "labe": "::已立项",
+                "value": "已立项"
+              }
+            ],
+            "placeholder": "请选择"
+          },
+          "type": "Select"
+        },
+        "bind": "status",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      }
+    }
+  },
+  "name": "项目"
+}

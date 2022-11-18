@@ -1,0 +1,269 @@
+{
+  "action": {
+    "bind": {
+      "model": "finance_system.debt",
+      "option": {
+        "withs": { "project": {}, "user": {}, "company": {} }
+      }
+    }
+  },
+  "layout": {
+    "form": {
+      "sections": [
+        {
+          "columns": [
+            {
+              "name": "所属项目",
+              "width": 12
+            },
+            {
+              "width": 12,
+              "name": "类型"
+            },
+            {
+              "name": "项目负责人",
+              "width": 12
+            },
+
+            {
+              "name": "负债单位",
+              "width": 12
+            },
+            {
+              "name": "债权单位",
+              "width": 12
+            },
+            {
+              "width": 12,
+              "name": "未回款类型"
+            },
+
+            {
+              "width": 12,
+              "name": "未回款金额"
+            }
+          ]
+        }
+      ],
+      "props": {}
+    },
+    "primary": "id",
+    "operation": {
+      "preset": {
+        "save": {
+          "back": true
+        },
+        "back": {}
+      },
+      "actions": [
+        {
+          "confirm": {
+            "title": "提示",
+            "desc": "确认删除，删除后数据无法恢复？"
+          },
+          "title": "删除",
+          "icon": "icon-trash-2",
+          "action": {
+            "Form.delete": {
+              "pathname": "/x/Table/finance_system.debt"
+            }
+          },
+          "style": "danger"
+        }
+      ]
+    }
+  },
+  "fields": {
+    "form": {
+      "所属项目": {
+        "bind": "project_id",
+        "view": {
+          "bind": "project.name",
+          "props": {},
+          "type": "Text"
+        },
+        "edit": {
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "scripts.project.GetSelect",
+                "query": {}
+              }
+            }
+          },
+          "type": "Select"
+        }
+      },
+      "项目负责人": {
+        "edit": {
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "scripts.contact.user.GetSelect",
+                "query": {}
+              }
+            }
+          },
+          "type": "Select"
+        },
+        "bind": "user_id",
+        "view": {
+          "bind": "user.name",
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "负债单位": {
+        "edit": {
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "scripts.company.GetSelect",
+                "query": {}
+              }
+            }
+          },
+          "type": "Select",
+          "bind": "company_id"
+        },
+        "bind": "company_id",
+        "view": {
+          "bind": "company.name",
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "债权单位": {
+        "edit": {
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "scripts.company.GetSelect",
+                "query": {}
+              }
+            }
+          },
+          "type": "Select",
+          "bind": "debt_company_id"
+        },
+        "bind": "debt_company_id",
+        "view": {
+          "bind": "debt_company.name",
+          "props": {},
+          "type": "Text"
+        }
+      },
+
+      "未回款类型": {
+        "edit": {
+          "props": {
+            "options": [
+              {
+                "labe": "::保修",
+                "value": "保修"
+              },
+              {
+                "labe": "::贷款金额",
+                "value": "贷款金额"
+              },
+              {
+                "labe": "::对外借款",
+                "value": "对外借款"
+              },
+              {
+                "labe": "::管理费用",
+                "value": "管理费用"
+              },
+              {
+                "labe": "::配件成本",
+                "value": "配件成本"
+              },
+              {
+                "labe": "::其他",
+                "value": "其他"
+              },
+              {
+                "labe": "::设备",
+                "value": "设备"
+              },
+              {
+                "labe": "::税务成本",
+                "value": "税务成本"
+              },
+              {
+                "labe": "::维修",
+                "value": "维修"
+              },
+              {
+                "labe": "::现金",
+                "value": "现金"
+              },
+              {
+                "labe": "::现有资金",
+                "value": "现有资金"
+              },
+              {
+                "labe": "::项目成本",
+                "value": "项目成本"
+              },
+              {
+                "labe": "::销售费用",
+                "value": "销售费用"
+              },
+              {
+                "labe": "::资金成本",
+                "value": "资金成本"
+              }
+            ],
+            "placeholder": "请选择"
+          },
+          "type": "Select"
+        },
+        "bind": "type",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      },
+      "类型": {
+        "edit": {
+          "props": {
+            "options": [
+              {
+                "labe": "::债权",
+                "value": "债权"
+              },
+              {
+                "labe": "::债务",
+                "value": "债务"
+              }
+            ],
+            "placeholder": "请选择"
+          },
+          "type": "Select"
+        },
+        "bind": "kind",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      },
+
+      "未回款金额": {
+        "edit": {
+          "props": {
+            "type": "number"
+          },
+          "type": "Input",
+          "bind": "total_money"
+        },
+        "bind": "total_money",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      }
+    }
+  },
+  "name": "债权"
+}

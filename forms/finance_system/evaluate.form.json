@@ -1,0 +1,180 @@
+{
+  "action": {
+    "bind": {
+      "model": "finance_system.evaluate",
+      "option": {
+        "withs": {}
+      }
+    }
+  },
+  "layout": {
+    "form": {
+      "sections": [
+        {
+          "columns": [
+            {
+              "name": "类型",
+              "width": 12
+            },
+            {
+              "width": 12,
+              "name": "月份"
+            },
+            {
+              "width": 12,
+              "name": "盈利毛利率"
+            },
+            {
+              "width": 12,
+              "name": "销售净利率"
+            },
+            {
+              "width": 12,
+              "name": "资产净利率"
+            },
+            {
+              "name": "净值报酬率",
+              "width": 12
+            },
+            {
+              "width": 12,
+              "name": "市盈率"
+            }
+          ]
+        }
+      ],
+      "props": {}
+    },
+    "primary": "id",
+    "operation": {
+      "preset": {
+        "save": {
+          "back": true
+        },
+        "back": {}
+      },
+      "actions": [
+        {
+          "confirm": {
+            "title": "提示",
+            "desc": "确认删除，删除后数据无法恢复？"
+          },
+          "title": "删除",
+          "icon": "icon-trash-2",
+          "action": {
+            "Form.delete": {
+              "pathname": "/x/Table/finance_system.evaluate"
+            }
+          },
+          "style": "danger"
+        }
+      ]
+    }
+  },
+  "fields": {
+    "form": {
+      "盈利毛利率": {
+        "edit": {
+          "props": {
+            "type": "number"
+          },
+          "type": "Input",
+          "bind": "profit_rate"
+        },
+        "bind": "profit_rate",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "销售净利率": {
+        "edit": {
+          "props": {
+            "type": "number"
+          },
+          "type": "Input",
+          "bind": "sale_rate"
+        },
+        "bind": "sale_rate",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "资产净利率": {
+        "edit": {
+          "props": {
+            "type": "number"
+          },
+          "type": "Input",
+          "bind": "property_rate"
+        },
+        "bind": "property_rate",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "净值报酬率": {
+        "edit": {
+          "props": {
+            "type": "number"
+          },
+          "type": "Input",
+          "bind": "award_rate"
+        },
+        "bind": "award_rate",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "市盈率": {
+        "edit": {
+          "props": {
+            "type": "number"
+          },
+          "type": "Input",
+          "bind": "market_rate"
+        },
+        "bind": "market_rate",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "类型": {
+        "edit": {
+          "props": {
+            "options": [
+              {
+                "labe": "::企业盈利能力评价",
+                "value": "企业盈利能力评价"
+              }
+            ],
+            "placeholder": "请选择"
+          },
+          "type": "Select"
+        },
+        "bind": "type",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      },
+      "月份": {
+        "bind": "add_time",
+        "edit": {
+          "props": { "format": "YYYY-MM", "picker": "month" },
+          "type": "DatePicker",
+          "bind": "add_time"
+        },
+        "view": {
+          "props": { "format": "YYYY-MM" },
+          "type": "Text"
+        }
+      }
+    }
+  },
+  "name": "财务评价"
+}

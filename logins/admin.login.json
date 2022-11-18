@@ -1,0 +1,15 @@
+{
+  "name": "::Admin Login",
+  "action": {
+    "process": "scripts.login.login.Login",
+    "args": [
+      ":payload"
+    ]
+  },
+  "layout": {
+    "entry": "/x/Chart/finance",
+    "slogan": "::Make Your Dream With Yao App Engine",
+    "site": "https://yaoapps.com?from=instance-admin-login"
+  }
+}
+	

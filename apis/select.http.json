@@ -1,0 +1,20 @@
+{
+  "name": "配置",
+  "version": "1.0.0",
+  "description": "配置API",
+  "group": "select",
+  "guard": "-",
+  "paths": [
+    {
+      "path": "/user",
+      "method": "GET",
+      "guard": "-",
+      "process": "scripts.contact.user.GetSelect",
+      "in": [],
+      "out": {
+        "status": 200,
+        "type": "application/json"
+      }
+    }
+  ]
+}

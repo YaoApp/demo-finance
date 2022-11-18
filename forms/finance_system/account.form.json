@@ -1,0 +1,245 @@
+{
+  "action": {
+    "bind": {
+      "model": "finance_system.account",
+      "option": {
+        "withs": {}
+      }
+    }
+  },
+  "layout": {
+    "form": {
+      "sections": [
+        {
+          "columns": [
+            {
+              "width": 12,
+              "name": "账户名称"
+            },
+            {
+              "width": 12,
+              "name": "开户类型"
+            },
+            {
+              "name": "账户账号",
+              "width": 12
+            },
+            {
+              "name": "开户行",
+              "width": 12
+            },
+            {
+              "width": 12,
+              "name": "账户余额"
+            },
+            {
+              "name": "开户日期",
+              "width": 12
+            },
+            {
+              "name": "状态",
+              "width": 12
+            },
+
+            {
+              "name": "开户行地址",
+              "width": 12
+            },
+            {
+              "name": "银行号",
+              "width": 12
+            },
+            {
+              "name": "网点地址",
+              "width": 12
+            },
+
+            {
+              "name": "附件",
+              "width": 24
+            }
+          ]
+        }
+      ],
+      "props": {}
+    },
+    "primary": "id",
+    "operation": {
+      "preset": {
+        "save": {
+          "back": true
+        },
+        "back": {}
+      },
+      "actions": [
+        {
+          "confirm": {
+            "title": "提示",
+            "desc": "确认删除，删除后数据无法恢复？"
+          },
+          "title": "删除",
+          "icon": "icon-trash-2",
+          "action": {
+            "Form.delete": {
+              "pathname": "/x/Table/finance.bond"
+            }
+          },
+          "style": "danger"
+        }
+      ]
+    }
+  },
+  "fields": {
+    "form": {
+      "账户名称": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "name"
+        },
+        "bind": "name",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "开户类型": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "type"
+        },
+        "bind": "type",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "开户行": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "bank"
+        },
+        "bind": "bank",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "账户账号": {
+        "edit": {
+          "props": { "type": "number" },
+          "type": "Input",
+          "bind": "account"
+        },
+        "bind": "account",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "开户行地址": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "address"
+        },
+        "bind": "address",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "银行号": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "bank_no"
+        },
+        "bind": "bank_no",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "网点地址": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "detail"
+        },
+        "bind": "detail",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+
+      "账户余额": {
+        "edit": {
+          "props": {
+            "type": "number"
+          },
+          "type": "Input",
+          "bind": "total_money"
+        },
+        "bind": "total_money",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "开户日期": {
+        "edit": {
+          "type": "DatePicker",
+          "bind": "add_time",
+          "props": {}
+        },
+        "bind": "add_time",
+        "view": {
+          "props": {
+            "format": "YYYY-MM-DD"
+          },
+          "type": "Text"
+        }
+      },
+      "状态": {
+        "edit": {
+          "props": {
+            "options": [
+              {
+                "labe": "::正常",
+                "value": "正常"
+              },
+              {
+                "labe": "::停用",
+                "value": "停用"
+              }
+            ],
+            "placeholder": "请选择"
+          },
+          "type": "Select"
+        },
+        "bind": "status",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      },
+      "附件": {
+        "edit": {
+          "props": {
+            "filetype": "file",
+            "$api": { "process": "fs.system.Upload" }
+          },
+          "type": "Upload",
+
+          "bind": "file"
+        },
+        "bind": "file"
+      }
+    }
+  },
+  "name": "现有资金"
+}

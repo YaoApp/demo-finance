@@ -1,0 +1,64 @@
+{
+  "name": "配置",
+  "version": "1.0.0",
+  "description": "配置API",
+  "group": "setting",
+  "guard": "-",
+  "paths": [
+    {
+      "path": "/user",
+      "method": "GET",
+      "guard": "-",
+      "process": "flows.settings.user",
+      "in": [":query"],
+      "out": {
+        "status": 200,
+        "type": "application/json"
+      }
+    },
+    {
+      "path": "/material",
+      "method": "GET",
+      "guard": "-",
+      "process": "flows.settings.material",
+      "in": [":query"],
+      "out": {
+        "status": 200,
+        "type": "application/json"
+      }
+    },
+    {
+      "path": "/material_stock",
+      "method": "GET",
+      "guard": "-",
+      "process": "flows.settings.material_stock",
+      "in": [":query"],
+      "out": {
+        "status": 200,
+        "type": "application/json"
+      }
+    },
+    {
+      "path": "/tax",
+      "method": "GET",
+      "guard": "-",
+      "process": "flows.settings.tax",
+      "in": [":query"],
+      "out": {
+        "status": 200,
+        "type": "application/json"
+      }
+    },
+    {
+      "path": "/finance_detail",
+      "method": "GET",
+      "guard": "-",
+      "process": "flows.settings.finance_detail",
+      "in": [":query"],
+      "out": {
+        "status": 200,
+        "type": "application/json"
+      }
+    }
+  ]
+}

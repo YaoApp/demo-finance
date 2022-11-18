@@ -1,0 +1,248 @@
+{
+  "action": {
+    "bind": {
+      "model": "finance_system.tax",
+      "option": {
+        "withs": { "project": {} }
+      }
+    }
+  },
+  "layout": {
+    "form": {
+      "sections": [
+        {
+          "columns": [
+            {
+              "width": 12,
+              "name": "项目名称"
+            },
+
+            {
+              "name": "月份",
+              "width": 12
+            },
+            {
+              "width": 12,
+              "name": "合同类型"
+            },
+            {
+              "width": 12,
+              "name": "类型"
+            },
+            {
+              "width": 12,
+              "name": "付款方式"
+            },
+
+            {
+              "name": "预计增值税",
+              "width": 12
+            },
+            {
+              "width": 12,
+              "name": "预计附加税额"
+            },
+            {
+              "width": 24,
+              "name": "销项税发票预计数据库"
+            },
+            {
+              "width": 24,
+              "name": "进项税发票预计数据库"
+            },
+            {
+              "width": 24,
+              "name": "进项税发票实际数据库"
+            }
+          ]
+        }
+      ],
+      "props": {}
+    },
+    "primary": "id",
+    "operation": {
+      "preset": {
+        "save": {
+          "back": true
+        },
+        "back": {}
+      },
+      "actions": [
+        {
+          "confirm": {
+            "title": "提示",
+            "desc": "确认删除，删除后数据无法恢复？"
+          },
+          "title": "删除",
+          "icon": "icon-trash-2",
+          "action": {
+            "Form.delete": {
+              "pathname": "/x/Table/finance_system.tax"
+            }
+          },
+          "style": "danger"
+        }
+      ]
+    }
+  },
+  "fields": {
+    "form": {
+      "项目名称": {
+        "edit": {
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "scripts.project.GetSelect",
+                "query": {}
+              }
+            }
+          },
+          "type": "Select"
+        },
+        "bind": "project_id",
+        "view": {
+          "bind": "project_id.name",
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "预计增值税": {
+        "edit": {
+          "props": {
+            "type": "number"
+          },
+          "type": "Input",
+          "bind": "pre_incr_tax"
+        },
+        "bind": "pre_incr_tax",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "预计附加税额": {
+        "edit": {
+          "props": {
+            "type": "number"
+          },
+          "type": "Input",
+          "bind": "pre_add_tax"
+        },
+        "bind": "pre_add_tax",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "合同类型": {
+        "edit": {
+          "props": {
+            "options": [
+              {
+                "labe": "::销售合同",
+                "value": "销售合同"
+              },
+              {
+                "labe": "::采购合同",
+                "value": "采购合同"
+              }
+            ],
+            "placeholder": "请选择"
+          },
+          "type": "Select"
+        },
+        "bind": "contract_type",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      },
+      "付款方式": {
+        "edit": {
+          "props": {
+            "options": [
+              {
+                "labe": "::贷款",
+                "value": "贷款"
+              },
+              {
+                "labe": "::自有资金",
+                "value": "自有资金"
+              }
+            ],
+            "placeholder": "请选择"
+          },
+          "type": "Select"
+        },
+        "bind": "pay_way",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      },
+      "类型": {
+        "edit": {
+          "props": {
+            "options": [
+              {
+                "labe": "::主机",
+                "value": "主机"
+              },
+              {
+                "labe": "::外购件",
+                "value": "外购件"
+              }
+            ],
+            "placeholder": "请选择"
+          },
+          "type": "Select"
+        },
+        "bind": "type",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      },
+      "月份": {
+        "bind": "add_time",
+        "edit": {
+          "props": { "format": "YYYY-MM", "picker": "month" },
+          "type": "DatePicker",
+          "bind": "add_time"
+        },
+        "view": {
+          "props": { "format": "YYYY-MM" },
+          "type": "Text"
+        }
+      },
+      "销项税发票预计数据库": {
+        "bind": "pre_sale_tax",
+        "edit": {
+          "type": "DynamicList",
+          "props": {
+            "setting": "setting/tax"
+          }
+        }
+      },
+      "进项税发票预计数据库": {
+        "bind": "pre_import_tax",
+        "edit": {
+          "type": "DynamicList",
+          "props": {
+            "setting": "setting/tax"
+          }
+        }
+      },
+      "进项税发票实际数据库": {
+        "bind": "import_tax",
+        "edit": {
+          "type": "DynamicList",
+          "props": {
+            "setting": "setting/tax"
+          }
+        }
+      }
+    }
+  },
+  "name": "债权"
+}

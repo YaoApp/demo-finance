@@ -1,0 +1,43 @@
+{
+  "label": "部门列表",
+  "version": "1.0.0",
+  "description": "部门列表",
+  "nodes": [
+    {
+      "name": "部门列表",
+      "engine": "xiang",
+      "query": {
+        "debug": true,
+        "select": [
+          "department.id",
+          "department.name",
+          "department.parent_id",
+          "department.order as order",
+          "parent.name as parent_name"
+        ],
+        "wheres": [{ ":department.deleted_at": "删除", "=": null }],
+        "from": "department",
+        "joins": [
+          {
+            "left": true,
+            "from": "department as parent",
+            "key": "parent.id",
+            "foreign": "department.parent_id"
+          }
+        ],
+        "limit": 1000
+      }
+    },
+    {
+      "name": "打印",
+      "process": "xiang.helper.Print",
+      "args": ["{{$res.部门列表}}"]
+    },
+    {
+      "name": "部门",
+      "process": "xiang.helper.ArrayTree",
+      "args": ["{{$res.部门列表}}", { "parent": "parent_id", "empty": null }]
+    }
+  ],
+  "output": { "data": "{{$res.部门}}" }
+}

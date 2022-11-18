@@ -1,0 +1,236 @@
+{
+  "name": "项目",
+  "action": {
+    "bind": {
+      "model": "project",
+      "option": {
+        "withs": { "user": {} }
+      }
+    }
+  },
+  "layout": {
+    "primary": "id",
+    "header": {
+      "preset": {},
+      "actions": []
+    },
+    "filter": {
+      "columns": [
+        {
+          "name": "项目名称",
+          "width": 4
+        }
+      ],
+      "actions": [
+        {
+          "icon": "icon-plus",
+          "width": 3,
+          "action": {
+            "Common.openModal": {
+              "width": 640,
+              "Form": {
+                "type": "edit",
+                "model": "project"
+              }
+            }
+          },
+          "title": "添加"
+        }
+      ]
+    },
+    "table": {
+      "columns": [
+        {
+          "width": 200,
+          "name": "项目名称"
+        },
+        {
+          "name": "项目编号",
+          "width": 250
+        },
+        {
+          "name": "负责人",
+          "width": 250
+        },
+
+        {
+          "name": "所属部门",
+          "width": 250
+        },
+        {
+          "name": "状态",
+          "width": 250
+        },
+        {
+          "name": "项目地址",
+          "width": 250
+        }
+      ],
+      "operation": {
+        "fold": false,
+        "actions": [
+          {
+            "action": {
+              "Common.openModal": {
+                "width": 640,
+                "Form": {
+                  "type": "view",
+                  "model": "project"
+                }
+              }
+            },
+            "title": "查看",
+            "icon": "icon-eye"
+          },
+          {
+            "title": "编辑",
+            "icon": "icon-edit-2",
+            "action": {
+              "Common.openModal": {
+                "Form": {
+                  "type": "edit",
+                  "model": "project"
+                }
+              }
+            }
+          },
+          {
+            "icon": "icon-trash-2",
+            "action": {
+              "Table.delete": {}
+            },
+            "style": "danger",
+            "confirm": {
+              "title": "提示",
+              "desc": "确认删除，删除后数据无法恢复？"
+            },
+            "title": "删除"
+          }
+        ]
+      }
+    }
+  },
+  "fields": {
+    "filter": {
+      "项目名称": {
+        "bind": "where.name.match",
+        "edit": {
+          "type": "Input",
+          "compute": "Trim",
+          "props": {
+            "placeholder": "请输入名称搜索"
+          }
+        }
+      }
+    },
+    "table": {
+      "项目名称": {
+        "view": {
+          "props": {},
+          "type": "Text"
+        },
+        "edit": {
+          "type": "Input",
+          "bind": "name",
+          "props": {}
+        },
+        "bind": "name"
+      },
+      "项目编号": {
+        "bind": "project_sn",
+        "view": {
+          "type": "Text",
+          "props": {}
+        },
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "project_sn"
+        }
+      },
+      "项目地址": {
+        "bind": "address",
+        "view": {
+          "type": "Text",
+          "props": {}
+        },
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "address"
+        }
+      },
+
+      "负责人": {
+        "edit": {
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "scripts.contact.user.GetSelect",
+                "query": {}
+              }
+            }
+          },
+          "type": "Select"
+        },
+        "bind": "user.name",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "负责人手机号码": {
+        "edit": {
+          "bind": "mobile",
+          "props": {},
+          "type": "Input"
+        },
+        "bind": "mobile",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "所属部门": {
+        "view": {
+          "type": "Text",
+          "props": {}
+        },
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "department_nanme"
+        },
+        "bind": "department_nanme"
+      },
+
+      "状态": {
+        "edit": {
+          "props": {
+            "options": [
+              {
+                "labe": "::已通过",
+                "value": "已通过"
+              },
+              {
+                "labe": "::已中标",
+                "value": "已中标"
+              },
+              {
+                "labe": "::已立项",
+                "value": "已立项"
+              }
+            ],
+            "placeholder": "请选择"
+          },
+          "type": "Select"
+        },
+        "bind": "status",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      }
+    }
+  }
+}
