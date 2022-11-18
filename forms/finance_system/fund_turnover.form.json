@@ -310,9 +310,7 @@
       },
       "分类二": {
         "edit": {
-          "props": {
-            "type": "number"
-          },
+          "props": {},
           "type": "Input",
           "bind": "type2"
         },
