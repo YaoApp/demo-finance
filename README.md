@@ -25,6 +25,9 @@
 
 Yao deom-finance 采用 <a href="https://github.com/YaoApp/yao">Yao 应用引擎开发</a>，适用于快速搭建应用管理后台和 API 接口，快速制作应用 API 接口等场景。
 
+[线上体验地址](https://demo-finance.iqka.com/admin/login/admin)
+默认用户名: `xiang@iqka.com` , 默认密码: `A123456p+`
+
 ### 安装
 
 #### 使用 Yao
@@ -64,4 +67,3 @@ docker run -d --restart unless-stopped --name demo-finance -p 5099:5099  yaoapp/
 默认用户名: `xiang@iqka.com`
 
 默认密码: `A123456p+`
-
