@@ -260,3 +260,7 @@ function Department() {
     ]
   );
 }
+function Data() {
+  User();
+  Department();
+}

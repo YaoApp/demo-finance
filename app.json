@@ -5,7 +5,7 @@
   "description": "::Another yao application",
   "version": "0.10.2",
   "adminRoot": "admin",
-  "setup": "scripts.demo.Data",
+  "setup": "scripts.fake.Data",
   "menu": {
     "process": "flows.app.menu",
     "args": [
