@@ -8,7 +8,7 @@ WORKDIR /data
 #COPY yao /usr/local/bin/yao cp /data/docker.env /data/.env && \
 #RUN apk add git
 RUN addgroup -S -g 1000 yao && adduser -S -G yao -u 999 yao
-RUN mkdir -p /data/app && curl -fsSL "https://mirrors-1252011659.cos.ap-beijing.myqcloud.com/apps/yaoapp/demo-finance/latest.zip" > /data/app/latest.zip && \
+RUN mkdir -p /data/app && curl -fsSL "https://mirrors-1252011659.cos.ap-beijing.myqcloud.com/apps/yaoapp/demo-finance/docker/latest.zip" > /data/app/latest.zip && \
     unzip /data/app/latest.zip
 RUN rm -rf /data/app/.git && \
     chown -R yao:yao /data && \
