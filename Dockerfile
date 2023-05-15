@@ -1,6 +1,6 @@
 #docker build --platform linux/amd64 --tag demo-project .
 #docker run -d --restart unless-stopped --name demo-project -p 5099:5099 demo-project
-FROM yaoapp/yao:0.10.2-amd64
+FROM yaoapp/yao:0.10.3-dev-amd64
 ARG VERSION
 
 WORKDIR /data
