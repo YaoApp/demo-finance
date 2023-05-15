@@ -1,10 +1,10 @@
 {
-  "name": "现有资金",
+  "name": "项目",
   "action": {
     "bind": {
-      "model": "finance_system.account",
+      "model": "project",
       "option": {
-        "withs": {}
+        "withs": { "user": {} }
       }
     }
   },
@@ -17,7 +17,7 @@
     "filter": {
       "columns": [
         {
-          "name": "名称",
+          "name": "项目名称",
           "width": 4
         }
       ],
@@ -26,8 +26,12 @@
           "icon": "icon-plus",
           "width": 3,
           "action": {
-            "Common.historyPush": {
-              "pathname": "/x/Form/finance_system.account/0/edit"
+            "Common.openModal": {
+              "width": 1000,
+              "Form": {
+                "type": "edit",
+                "model": "project"
+              }
             }
           },
           "title": "添加"
@@ -38,31 +42,28 @@
       "columns": [
         {
           "width": 200,
-          "name": "账户名称"
+          "name": "项目名称"
         },
         {
-          "width": 200,
-          "name": "开户类型"
+          "name": "项目编号",
+          "width": 250
         },
         {
-          "name": "开户行",
-          "width": 150
+          "name": "负责人",
+          "width": 250
         },
+
         {
-          "name": "收款账户账号",
-          "width": 150
-        },
-        {
-          "width": 200,
-          "name": "账户余额"
-        },
-        {
-          "name": "开户日期",
-          "width": 150
+          "name": "所属部门",
+          "width": 250
         },
         {
           "name": "状态",
-          "width": 150
+          "width": 250
+        },
+        {
+          "name": "项目地址",
+          "width": 250
         }
       ],
       "operation": {
@@ -71,10 +72,10 @@
           {
             "action": {
               "Common.openModal": {
-                "width": 640,
+                "width": 1000,
                 "Form": {
                   "type": "view",
-                  "model": "finance_system.account"
+                  "model": "project"
                 }
               }
             },
@@ -88,7 +89,7 @@
               "Common.openModal": {
                 "Form": {
                   "type": "edit",
-                  "model": "finance_system.account"
+                  "model": "project"
                 }
               }
             }
@@ -111,7 +112,7 @@
   },
   "fields": {
     "filter": {
-      "名称": {
+      "项目名称": {
         "bind": "where.name.match",
         "edit": {
           "type": "Input",
@@ -123,130 +124,101 @@
       }
     },
     "table": {
-      "账户名称": {
-        "edit": {
-          "props": {},
-          "type": "Input",
-          "bind": "name"
-        },
-        "bind": "name",
+      "项目名称": {
         "view": {
           "props": {},
           "type": "Text"
-        }
+        },
+        "edit": {
+          "type": "Input",
+          "bind": "name",
+          "props": {}
+        },
+        "bind": "name"
       },
-      "开户类型": {
+      "项目编号": {
+        "bind": "project_sn",
+        "view": {
+          "type": "Text",
+          "props": {}
+        },
         "edit": {
           "props": {},
           "type": "Input",
-          "bind": "type"
-        },
-        "bind": "type",
-        "view": {
-          "props": {},
-          "type": "Text"
+          "bind": "project_sn"
         }
       },
-      "开户行": {
-        "edit": {
-          "props": {},
-          "type": "Input",
-          "bind": "bank"
-        },
-        "bind": "bank",
+      "项目地址": {
+        "bind": "address",
         "view": {
-          "props": {},
-          "type": "Text"
-        }
-      },
-      "收款账户账号": {
-        "edit": {
-          "props": {},
-          "type": "Input",
-          "bind": "account"
+          "type": "Text",
+          "props": {}
         },
-        "bind": "account",
-        "view": {
-          "props": {},
-          "type": "Text"
-        }
-      },
-      "开户行地址": {
         "edit": {
           "props": {},
           "type": "Input",
           "bind": "address"
-        },
-        "bind": "address",
-        "view": {
-          "props": {},
-          "type": "Text"
-        }
-      },
-      "银行号": {
-        "edit": {
-          "props": {},
-          "type": "Input",
-          "bind": "bank_no"
-        },
-        "bind": "bank_no",
-        "view": {
-          "props": {},
-          "type": "Text"
-        }
-      },
-      "网点地址": {
-        "edit": {
-          "props": {},
-          "type": "Input",
-          "bind": "detail"
-        },
-        "bind": "detail",
-        "view": {
-          "props": {},
-          "type": "Text"
         }
       },
 
-      "账户余额": {
+      "负责人": {
         "edit": {
           "props": {
-            "type": "number"
+            "xProps": {
+              "$remote": {
+                "process": "scripts.contact.user.GetSelect",
+                "query": {}
+              }
+            }
           },
-          "type": "Input",
-          "bind": "total_money"
+          "type": "Select"
         },
-        "bind": "total_money",
+        "bind": "user.name",
         "view": {
           "props": {},
           "type": "Text"
         }
       },
-      "开户日期": {
+      "负责人手机号码": {
         "edit": {
-          "type": "DatePicker",
-          "bind": "add_time",
-          "props": {}
+          "bind": "mobile",
+          "props": {},
+          "type": "Input"
         },
-        "bind": "add_time",
+        "bind": "mobile",
         "view": {
-          "props": {
-            "format": "YYYY-MM-DD"
-          },
+          "props": {},
           "type": "Text"
         }
       },
+      "所属部门": {
+        "view": {
+          "type": "Text",
+          "props": {}
+        },
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "department_nanme"
+        },
+        "bind": "department_nanme"
+      },
+
       "状态": {
         "edit": {
           "props": {
             "options": [
               {
-                "labe": "::正常",
-                "value": "正常"
+                "labe": "::已通过",
+                "value": "已通过"
               },
               {
-                "labe": "::停用",
-                "value": "停用"
+                "labe": "::已中标",
+                "value": "已中标"
+              },
+              {
+                "labe": "::已立项",
+                "value": "已立项"
               }
             ],
             "placeholder": "请选择"

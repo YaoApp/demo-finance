@@ -1,5 +1,4 @@
 {
-  "name": "未来6个月资金预警",
   "action": {
     "bind": {
       "model": "finance_system.finance_alarm",
@@ -9,117 +8,107 @@
     }
   },
   "layout": {
-    "primary": "id",
-    "header": {
-      "preset": {},
-      "actions": []
-    },
-    "filter": {
-      "columns": [
-        {
-          "name": "名称",
-          "width": 4
-        }
-      ],
-      "actions": [
-        {
-          "icon": "icon-plus",
-          "width": 3,
-          "action": {
-            "Common.historyPush": {
-              "pathname": "/x/Form/finance_system.finance_alarm/0/edit"
-            }
-          },
-          "title": "添加"
-        }
-      ]
-    },
-    "table": {
-      "columns": [
-        {
-          "width": 200,
-          "name": "名称"
-        },
-        {
-          "name": "分类",
-          "width": 150
-        },
-        {
-          "name": "事项",
-          "width": 150
-        },
+    "actions": [
+      {
+        "title": "保存",
+        "icon": "icon-check",
 
-        {
-          "name": "已发生的金额",
-          "width": 150
-        },
-        {
-          "name": "添加日期",
-          "width": 150
-        },
-        {
-          "width": 200,
-          "name": "备注"
-        }
-      ],
-      "operation": {
-        "fold": false,
-        "actions": [
+        "showWhenAdd": true,
+
+        "style": "primary",
+        "action": [
           {
-            "action": {
-              "Common.openModal": {
-                "width": 640,
-                "Form": {
-                  "type": "view",
-                  "model": "finance_system.finance_alarm"
-                }
-              }
-            },
-            "title": "查看",
-            "icon": "icon-eye"
+            "name": "Submit",
+            "type": "Form.submit",
+            "payload": {}
           },
           {
-            "title": "编辑",
-            "icon": "icon-edit-2",
-            "action": {
-              "Common.openModal": {
-                "Form": {
-                  "type": "edit",
-                  "model": "finance_system.finance_alarm"
-                }
-              }
-            }
-          },
+            "name": "Back",
+            "type": "Common.closeModal",
+            "payload": {}
+          }
+        ]
+      },
+      {
+        "title": "返回",
+        "divideLine": true,
+        "showWhenAdd": true,
+        "showWhenView": true,
+        "icon": "icon-arrow-left",
+        "action": [
           {
-            "icon": "icon-trash-2",
-            "action": {
-              "Table.delete": {}
-            },
-            "style": "danger",
-            "confirm": {
-              "title": "提示",
-              "desc": "确认删除，删除后数据无法恢复？"
-            },
-            "title": "删除"
+            "name": "closeModal",
+            "type": "Common.closeModal",
+            "payload": {}
           }
         ]
       }
+    ],
+    "form": {
+      "sections": [
+        {
+          "columns": [
+            {
+              "width": 12,
+              "name": "名称"
+            },
+            {
+              "name": "分类",
+              "width": 12
+            },
+            {
+              "name": "事项",
+              "width": 12
+            },
+            {
+              "name": "已发生的金额",
+              "width": 12
+            },
+            {
+              "name": "添加日期",
+              "width": 12
+            },
+            {
+              "width": 24,
+              "name": "备注"
+            },
+            {
+              "width": 24,
+              "name": "记录表"
+            }
+          ]
+        }
+      ],
+      "props": {}
+    },
+    "primary": "id",
+    "operation": {
+      "preset": {
+        "save": {
+          "back": true
+        },
+        "back": {}
+      },
+      "actions": [
+        {
+          "confirm": {
+            "title": "提示",
+            "desc": "确认删除，删除后数据无法恢复？"
+          },
+          "title": "删除",
+          "icon": "icon-trash-2",
+          "action": {
+            "Form.delete": {
+              "pathname": "/x/Table/finance.bond"
+            }
+          },
+          "style": "danger"
+        }
+      ]
     }
   },
   "fields": {
-    "filter": {
-      "名称": {
-        "bind": "where.name.match",
-        "edit": {
-          "type": "Input",
-          "compute": "Trim",
-          "props": {
-            "placeholder": "请输入名称搜索"
-          }
-        }
-      }
-    },
-    "table": {
+    "form": {
       "名称": {
         "edit": {
           "props": {},
@@ -266,9 +255,9 @@
         "edit": {
           "props": {},
           "type": "Input",
-          "bind": "remark"
+          "bind": "account"
         },
-        "bind": "remark",
+        "bind": "account",
         "view": {
           "props": {},
           "type": "Text"
@@ -302,7 +291,15 @@
           },
           "type": "Text"
         }
+      },
+      "记录表": {
+        "bind": "detail",
+        "edit": {
+          "type": "List",
+          "props": { "name": "finance_detail", "showLabel": false }
+        }
       }
     }
-  }
+  },
+  "name": "现有资金"
 }

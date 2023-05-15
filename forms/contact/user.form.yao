@@ -87,7 +87,43 @@
           "style": "danger"
         }
       ]
-    }
+    },
+    "actions": [
+      {
+        "title": "保存",
+        "icon": "icon-check",
+
+        "showWhenAdd": true,
+
+        "style": "primary",
+        "action": [
+          {
+            "name": "Submit",
+            "type": "Form.submit",
+            "payload": {}
+          },
+          {
+            "name": "Back",
+            "type": "Common.closeModal",
+            "payload": {}
+          }
+        ]
+      },
+      {
+        "title": "返回",
+        "divideLine": true,
+        "showWhenAdd": true,
+        "showWhenView": true,
+        "icon": "icon-arrow-left",
+        "action": [
+          {
+            "name": "closeModal",
+            "type": "Common.closeModal",
+            "payload": {}
+          }
+        ]
+      }
+    ]
   },
   "fields": {
     "form": {

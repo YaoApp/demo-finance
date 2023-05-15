@@ -1,113 +1,185 @@
 {
+  "name": "工资",
   "action": {
     "bind": {
       "model": "finance_system.salary",
       "option": {
         "withs": { "user": {} }
       }
-    },
-    "before:save": "scripts.salary.BeforeSave"
+    }
   },
   "layout": {
-    "form": {
-      "sections": [
+    "primary": "id",
+    "header": {
+      "preset": {},
+      "actions": []
+    },
+    "filter": {
+      "columns": [
         {
-          "columns": [
-            {
-              "name": "姓名",
-              "width": 8
-            },
-            {
-              "width": 8,
-              "name": "考勤天数"
-            },
-            {
-              "width": 8,
-              "name": "时间"
-            },
-            {
-              "width": 8,
-              "name": "税前工资"
-            },
-            {
-              "name": "社保",
-              "width": 8
-            },
-
-            {
-              "name": "公积金",
-              "width": 8
-            },
-            {
-              "name": "个税",
-              "width": 8
-            },
-            {
-              "width": 8,
-              "name": "税后基本工资"
-            },
-
-            {
-              "width": 8,
-              "name": "月奖"
-            },
-            {
-              "width": 8,
-              "name": "加班"
-            },
-            {
-              "width": 8,
-              "name": "补助"
-            },
-            {
-              "width": 8,
-              "name": "年终奖"
-            },
-            {
-              "width": 8,
-              "name": "年终奖个税"
-            },
-            {
-              "width": 8,
-              "name": "课题奖"
-            },
-            {
-              "width": 8,
-              "name": "实发工资"
-            }
-          ]
+          "name": "姓名",
+          "width": 4
+        },
+        {
+          "name": "日期",
+          "width": 4
         }
       ],
-      "props": {}
-    },
-    "primary": "id",
-    "operation": {
-      "preset": {
-        "save": {
-          "back": true
-        },
-        "back": {}
-      },
       "actions": [
         {
-          "confirm": {
-            "title": "提示",
-            "desc": "确认删除，删除后数据无法恢复？"
-          },
-          "title": "删除",
-          "icon": "icon-trash-2",
+          "icon": "icon-plus",
+          "width": 3,
           "action": {
-            "Form.delete": {
-              "pathname": "/x/Table/finance_system.salary"
+            "Common.openModal": {
+              "width": 1000,
+              "Form": {
+                "type": "edit",
+                "model": "finance_system.salary"
+              }
             }
           },
-          "style": "danger"
+          "title": "添加"
         }
       ]
+    },
+    "table": {
+      "columns": [
+        {
+          "width": 250,
+          "name": "部门"
+        },
+        {
+          "name": "姓名",
+          "width": 150
+        },
+        {
+          "width": 100,
+          "name": "考勤天数"
+        },
+        {
+          "width": 100,
+          "name": "时间"
+        },
+        {
+          "width": 150,
+          "name": "税前工资"
+        },
+        {
+          "name": "社保",
+          "width": 100
+        },
+
+        {
+          "name": "公积金",
+          "width": 100
+        },
+        {
+          "name": "个税",
+          "width": 100
+        },
+        {
+          "width": 150,
+          "name": "税后基本工资"
+        },
+
+        {
+          "width": 100,
+          "name": "月奖"
+        },
+        {
+          "width": 100,
+          "name": "加班"
+        },
+        {
+          "width": 100,
+          "name": "补助"
+        },
+        {
+          "width": 150,
+          "name": "年终奖"
+        },
+        {
+          "width": 150,
+          "name": "年终奖个税"
+        },
+        {
+          "width": 150,
+          "name": "课题奖"
+        },
+        {
+          "width": 150,
+          "name": "实发工资"
+        }
+      ],
+      "operation": {
+        "fold": false,
+        "actions": [
+          {
+            "action": {
+              "Common.openModal": {
+                "width": 1000,
+                "Form": {
+                  "type": "view",
+                  "model": "finance_system.salary"
+                }
+              }
+            },
+            "title": "查看",
+            "icon": "icon-eye"
+          },
+          {
+            "title": "编辑",
+            "icon": "icon-edit-2",
+            "action": {
+              "Common.openModal": {
+                "Form": {
+                  "type": "edit",
+                  "model": "finance_system.salary"
+                }
+              }
+            }
+          },
+          {
+            "icon": "icon-trash-2",
+            "action": {
+              "Table.delete": {}
+            },
+            "style": "danger",
+            "confirm": {
+              "title": "提示",
+              "desc": "确认删除，删除后数据无法恢复？"
+            },
+            "title": "删除"
+          }
+        ]
+      }
     }
   },
   "fields": {
-    "form": {
+    "filter": {
+      "姓名": {
+        "edit": {
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "scripts.contact.user.GetSelect",
+                "query": {}
+              }
+            }
+          },
+          "type": "Select"
+        },
+        "bind": "where.user_id.eq"
+      },
+      "日期": {
+        "edit": {
+          "props": { "format": "YYYY-MM", "picker": "month" },
+          "type": "DatePicker"
+        },
+        "bind": "where.add_time.match"
+      }
+    },
+    "table": {
       "部门": {
         "bind": "department_name",
         "view": {
@@ -346,18 +418,12 @@
         }
       },
       "时间": {
-        "edit": {
-          "props": { "format": "YYYY-MM", "picker": "month" },
-          "type": "DatePicker",
-          "bind": "add_time"
-        },
         "bind": "add_time",
         "view": {
-          "props": {},
+          "props": { "format": "YYYY-MM" },
           "type": "Text"
         }
       }
     }
-  },
-  "name": "债权"
+  }
 }

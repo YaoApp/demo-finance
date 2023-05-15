@@ -1,10 +1,10 @@
 {
-  "name": "行政管理",
+  "name": "公司",
   "action": {
     "bind": {
-      "model": "admin.goods",
+      "model": "company",
       "option": {
-        "withs": { "user": {} }
+        "withs": {}
       }
     }
   },
@@ -17,7 +17,7 @@
     "filter": {
       "columns": [
         {
-          "name": "名称",
+          "name": "单位名称",
           "width": 4
         }
       ],
@@ -27,10 +27,10 @@
           "width": 3,
           "action": {
             "Common.openModal": {
-              "width": 640,
+              "width": 1000,
               "Form": {
                 "type": "edit",
-                "model": "goods"
+                "model": "company"
               }
             }
           },
@@ -41,13 +41,19 @@
     "table": {
       "columns": [
         {
-          "name": "名称"
+          "name": "单位名称"
         },
         {
-          "name": "状态"
+          "name": "单位分类"
         },
         {
-          "name": "负责人"
+          "name": "类型"
+        },
+        {
+          "name": "负责人名字"
+        },
+        {
+          "name": "负责人联系电话"
         }
       ],
       "operation": {
@@ -56,10 +62,10 @@
           {
             "action": {
               "Common.openModal": {
-                "width": 640,
+                "width": 1000,
                 "Form": {
                   "type": "view",
-                  "model": "goods"
+                  "model": "company"
                 }
               }
             },
@@ -73,7 +79,7 @@
               "Common.openModal": {
                 "Form": {
                   "type": "edit",
-                  "model": "goods"
+                  "model": "company"
                 }
               }
             }
@@ -96,19 +102,19 @@
   },
   "fields": {
     "filter": {
-      "名称": {
+      "单位名称": {
         "bind": "where.name.match",
         "edit": {
           "type": "Input",
           "compute": "Trim",
           "props": {
-            "placeholder": "名称"
+            "placeholder": "单位名称"
           }
         }
       }
     },
     "table": {
-      "名称": {
+      "单位名称": {
         "view": {
           "props": {},
           "type": "Text"
@@ -120,34 +126,98 @@
         },
         "bind": "name"
       },
-      "状态": {
+
+      "负责人名字": {
+        "bind": "user_name",
+        "view": {
+          "type": "Text",
+          "props": {}
+        },
         "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "user_name"
+        }
+      },
+      "负责人联系电话": {
+        "bind": "mobile",
+        "view": {
+          "type": "Text",
+          "props": {}
+        },
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "mobile"
+        }
+      },
+      "单位分类": {
+        "edit": {
+          "bind": "kind",
           "props": {
             "options": [
               {
-                "labe": "::闲置",
-                "value": "闲置"
+                "labe": "::建设单位",
+                "value": "建设单位"
               },
               {
-                "labe": "::外借",
-                "value": "外借"
+                "labe": "::总包单位",
+                "value": "总包单位"
+              },
+              {
+                "labe": "::劳务公司",
+                "value": "劳务公司"
+              },
+              {
+                "labe": "::总包单位",
+                "value": "总包单位"
+              },
+              {
+                "labe": "::工程公司",
+                "value": "工程公司"
+              },
+              {
+                "labe": "::建材公司",
+                "value": "建材公司"
+              },
+              {
+                "labe": "::专业分包",
+                "value": "专业分包"
               }
             ],
             "placeholder": "请选择"
           },
           "type": "Select"
         },
-        "bind": "status",
+        "bind": "kind",
         "view": {
           "type": "Text",
           "props": {}
         }
       },
-      "负责人": {
-        "bind": "user.name",
+
+      "类型": {
+        "edit": {
+          "bind": "type",
+          "props": {
+            "options": [
+              {
+                "labe": "::内部",
+                "value": "内部"
+              },
+              {
+                "labe": "::外部",
+                "value": "外部"
+              }
+            ],
+            "placeholder": "请选择"
+          },
+          "type": "Select"
+        },
+        "bind": "type",
         "view": {
-          "props": {},
-          "type": "Text"
+          "type": "Text",
+          "props": {}
         }
       }
     }

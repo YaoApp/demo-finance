@@ -1,0 +1,312 @@
+{
+  "name": "未来6个月资金预警",
+  "action": {
+    "bind": {
+      "model": "finance_system.finance_alarm",
+      "option": {
+        "withs": {}
+      }
+    }
+  },
+  "layout": {
+    "primary": "id",
+    "header": {
+      "preset": {},
+      "actions": []
+    },
+    "filter": {
+      "columns": [
+        {
+          "name": "名称",
+          "width": 4
+        }
+      ],
+      "actions": [
+        {
+          "icon": "icon-plus",
+          "width": 3,
+          "action": {
+            "Common.openModal": {
+              "width": 1000,
+              "Form": {
+                "type": "edit",
+                "model": "finance_system.finance_alarm"
+              }
+            }
+          },
+          "title": "添加"
+        }
+      ]
+    },
+    "table": {
+      "columns": [
+        {
+          "width": 200,
+          "name": "名称"
+        },
+        {
+          "name": "分类",
+          "width": 150
+        },
+        {
+          "name": "事项",
+          "width": 150
+        },
+
+        {
+          "name": "已发生的金额",
+          "width": 150
+        },
+        {
+          "name": "添加日期",
+          "width": 150
+        },
+        {
+          "width": 200,
+          "name": "备注"
+        }
+      ],
+      "operation": {
+        "fold": false,
+        "actions": [
+          {
+            "action": {
+              "Common.openModal": {
+                "width": 1000,
+                "Form": {
+                  "type": "view",
+                  "model": "finance_system.finance_alarm"
+                }
+              }
+            },
+            "title": "查看",
+            "icon": "icon-eye"
+          },
+          {
+            "title": "编辑",
+            "icon": "icon-edit-2",
+            "action": {
+              "Common.openModal": {
+                "Form": {
+                  "type": "edit",
+                  "model": "finance_system.finance_alarm"
+                }
+              }
+            }
+          },
+          {
+            "icon": "icon-trash-2",
+            "action": {
+              "Table.delete": {}
+            },
+            "style": "danger",
+            "confirm": {
+              "title": "提示",
+              "desc": "确认删除，删除后数据无法恢复？"
+            },
+            "title": "删除"
+          }
+        ]
+      }
+    }
+  },
+  "fields": {
+    "filter": {
+      "名称": {
+        "bind": "where.name.match",
+        "edit": {
+          "type": "Input",
+          "compute": "Trim",
+          "props": {
+            "placeholder": "请输入名称搜索"
+          }
+        }
+      }
+    },
+    "table": {
+      "名称": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "name"
+        },
+        "bind": "name",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "分类": {
+        "edit": {
+          "props": {
+            "options": [
+              {
+                "labe": "::6个月后的银行余额",
+                "value": "6个月后的银行余额"
+              },
+              {
+                "labe": "::短期债权合计",
+                "value": "短期债权合计"
+              },
+              {
+                "labe": "::短期债务合计",
+                "value": "短期债务合计"
+              },
+              {
+                "labe": "::如果控制在银行余额200万左右需要还款",
+                "value": "如果控制在银行余额200万左右需要还款"
+              },
+              {
+                "labe": "::银行借款(长期债务)",
+                "value": "银行借款(长期债务)"
+              },
+              {
+                "labe": "::月利息",
+                "value": "月利息"
+              },
+              {
+                "labe": "::现金流实际",
+                "value": "现金流实际"
+              },
+              {
+                "labe": "::月现金流预计",
+                "value": "月现金流预计"
+              },
+              {
+                "labe": "::月银行余额实际",
+                "value": "月银行余额实际"
+              },
+              {
+                "labe": "::债务",
+                "value": "债务"
+              },
+              {
+                "labe": "::债权",
+                "value": "债权"
+              }
+            ],
+            "placeholder": "请选择"
+          },
+          "type": "Select"
+        },
+        "bind": "type",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      },
+      "事项": {
+        "edit": {
+          "props": {
+            "options": [
+              {
+                "labe": "::保修",
+                "value": "保修"
+              },
+              {
+                "labe": "::贷款金额",
+                "value": "贷款金额"
+              },
+              {
+                "labe": "::对外借款",
+                "value": "对外借款"
+              },
+              {
+                "labe": "::管理费用",
+                "value": "管理费用"
+              },
+              {
+                "labe": "::配件成本",
+                "value": "配件成本"
+              },
+              {
+                "labe": "::其他",
+                "value": "其他"
+              },
+              {
+                "labe": "::设备",
+                "value": "设备"
+              },
+              {
+                "labe": "::税务成本",
+                "value": "税务成本"
+              },
+              {
+                "labe": "::维修",
+                "value": "维修"
+              },
+              {
+                "labe": "::现金",
+                "value": "现金"
+              },
+              {
+                "labe": "::现有资金",
+                "value": "现有资金"
+              },
+              {
+                "labe": "::项目成本",
+                "value": "项目成本"
+              },
+              {
+                "labe": "::销售费用",
+                "value": "销售费用"
+              },
+              {
+                "labe": "::资金成本",
+                "value": "资金成本"
+              }
+            ],
+            "placeholder": "请选择"
+          },
+          "type": "Select"
+        },
+        "bind": "kind",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      },
+      "备注": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "remark"
+        },
+        "bind": "remark",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+
+      "已发生的金额": {
+        "edit": {
+          "props": {
+            "type": "number"
+          },
+          "type": "Input",
+          "bind": "total_money"
+        },
+        "bind": "total_money",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "添加日期": {
+        "edit": {
+          "type": "DatePicker",
+          "bind": "add_time",
+          "props": {}
+        },
+        "bind": "add_time",
+        "view": {
+          "props": {
+            "format": "YYYY-MM-DD"
+          },
+          "type": "Text"
+        }
+      }
+    }
+  }
+}

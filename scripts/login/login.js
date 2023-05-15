@@ -44,7 +44,7 @@ function Login(payload) {
   }
 
   // 增加token等信息
-  var session_id = Process("session.start");
+  const session_id = payload.sid;
   var jwt = Process(
     "xiang.helper.JWTMake",
     user[0].id,

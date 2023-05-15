@@ -1,157 +1,160 @@
 {
   "name": "APP Menu",
   "nodes": [],
-  "output": [
-    {
-      "blocks": 0,
-      "icon": "icon-archive",
-      "id": 1000,
-      "name": "财务模块",
-      "parent": null,
-      "path": "/x/Chart/finance",
-      "visible_menu": 1,
-      "children": [
-        {
-          "blocks": 0,
-          "icon": "icon-book",
-          "name": "工作台",
-          "id": 1010,
-          "parent": 1000,
-          "path": "/x/Chart/finance",
-          "visible_menu": 1
-        },
-        {
-          "blocks": 0,
-          "icon": "icon-book",
-          "name": "现有资金",
-          "id": 1010,
-          "parent": 1000,
-          "path": "/x/Table/finance_system.account",
-          "visible_menu": 1
-        },
-        {
-          "blocks": 0,
-          "icon": "icon-book",
-          "name": "未来6个月资金预警",
-          "id": 1020,
-          "parent": 1000,
-          "path": "/x/Table/finance_system.finance_alarm",
-          "visible_menu": 1
-        },
-        {
-          "blocks": 0,
-          "icon": "icon-square",
-          "id": 1030,
-          "name": "债权/债务",
-          "parent": 1000,
-          "path": "/x/Table/finance_system.debt",
-          "visible_menu": 1
-        },
-        {
-          "blocks": 0,
-          "icon": "icon-square",
-          "id": 1030,
-          "name": "工资",
-          "parent": 1000,
-          "path": "/x/Table/finance_system.salary",
-          "visible_menu": 1
-        },
-        {
-          "blocks": 0,
-          "icon": "icon-square",
-          "id": 1030,
-          "name": "资金流水",
-          "parent": 1000,
-          "path": "/x/Table/finance_system.fund_turnover",
-          "visible_menu": 1
-        },
-        {
-          "blocks": 0,
-          "icon": "icon-square",
-          "id": 1030,
-          "name": "税务核算",
-          "parent": 1000,
-          "path": "/x/Table/finance_system.tax",
-          "visible_menu": 1
-        },
-        {
-          "blocks": 0,
-          "icon": "icon-square",
-          "id": 1030,
-          "name": "财务评价",
-          "parent": 1000,
-          "path": "/x/Table/finance_system.evaluate",
-          "visible_menu": 1
-        }
-      ]
-    },
-    {
-      "blocks": 0,
-      "icon": "icon-file-text",
-      "id": 200,
-      "name": "项目",
-      "parent": null,
-      "path": "/x/Table/project.project",
-      "visible_menu": 1,
-      "children": [
-        {
-          "blocks": 0,
-          "icon": "icon-book",
-          "name": "项目前期",
-          "id": 210,
-          "parent": 200,
-          "path": "/x/Table/project.project",
-          "visible_menu": 1
-        }
-      ]
-    },
-    {
-      "blocks": 0,
-      "icon": "icon-map",
-      "id": 800,
-      "name": "单位",
-      "parent": null,
-      "path": "/x/Table/company",
-      "visible_menu": 0
-    },
+  "output": {
+    "items": [
+      {
+        "blocks": 0,
+        "icon": "icon-archive",
+        "id": 1000,
+        "name": "财务模块",
+        "parent": null,
+        "path": "/x/Chart/finance",
+        "visible_menu": 1,
+        "children": [
+          {
+            "blocks": 0,
+            "icon": "icon-book",
+            "name": "工作台",
+            "id": 1010,
+            "parent": 1000,
+            "path": "/x/Chart/finance",
+            "visible_menu": 1
+          },
+          {
+            "blocks": 0,
+            "icon": "icon-book",
+            "name": "现有资金",
+            "id": 1010,
+            "parent": 1000,
+            "path": "/x/Table/finance_system.account",
+            "visible_menu": 1
+          },
+          {
+            "blocks": 0,
+            "icon": "icon-book",
+            "name": "未来6个月资金预警",
+            "id": 1020,
+            "parent": 1000,
+            "path": "/x/Table/finance_system.finance_alarm",
+            "visible_menu": 1
+          },
+          {
+            "blocks": 0,
+            "icon": "icon-square",
+            "id": 1030,
+            "name": "债权/债务",
+            "parent": 1000,
+            "path": "/x/Table/finance_system.debt",
+            "visible_menu": 1
+          },
+          {
+            "blocks": 0,
+            "icon": "icon-square",
+            "id": 1030,
+            "name": "工资",
+            "parent": 1000,
+            "path": "/x/Table/finance_system.salary",
+            "visible_menu": 1
+          },
+          {
+            "blocks": 0,
+            "icon": "icon-square",
+            "id": 1030,
+            "name": "资金流水",
+            "parent": 1000,
+            "path": "/x/Table/finance_system.fund_turnover",
+            "visible_menu": 1
+          },
+          {
+            "blocks": 0,
+            "icon": "icon-square",
+            "id": 1030,
+            "name": "税务核算",
+            "parent": 1000,
+            "path": "/x/Table/finance_system.tax",
+            "visible_menu": 1
+          },
+          {
+            "blocks": 0,
+            "icon": "icon-square",
+            "id": 1030,
+            "name": "财务评价",
+            "parent": 1000,
+            "path": "/x/Table/finance_system.evaluate",
+            "visible_menu": 1
+          }
+        ]
+      },
+      {
+        "blocks": 0,
+        "icon": "icon-file-text",
+        "id": 200,
+        "name": "项目",
+        "parent": null,
+        "path": "/x/Table/project.project",
+        "visible_menu": 1,
+        "children": [
+          {
+            "blocks": 0,
+            "icon": "icon-book",
+            "name": "项目前期",
+            "id": 210,
+            "parent": 200,
+            "path": "/x/Table/project.project",
+            "visible_menu": 1
+          }
+        ]
+      },
+      {
+        "blocks": 0,
+        "icon": "icon-map",
+        "id": 800,
+        "name": "单位",
+        "parent": null,
+        "path": "/x/Table/company",
+        "visible_menu": 0
+      },
 
-    {
-      "blocks": 0,
-      "icon": "icon-book",
-      "id": 900,
-      "name": "行政",
-      "parent": null,
-      "path": "/x/Table/contact.user",
-      "visible_menu": 1,
-      "children": [
-        {
-          "blocks": 0,
-          "icon": "icon-book",
-          "name": "员工",
-          "id": 910,
-          "parent": 900,
-          "path": "/x/Table/contact.user",
-          "visible_menu": 1
-        },
-        {
-          "blocks": 0,
-          "icon": "icon-book",
-          "name": "部门列表",
-          "id": 920,
-          "parent": 900,
-          "path": "/x/Table/contact.department",
-          "visible_menu": 1
-        },
-        {
-          "blocks": 0,
-          "icon": "icon-square",
-          "id": 930,
-          "name": "物品管理",
-          "parent": 900,
-          "path": "/x/Table/admin.goods",
-          "visible_menu": 1
-        }
-      ]
-    }
-  ]
+      {
+        "blocks": 0,
+        "icon": "icon-book",
+        "id": 900,
+        "name": "行政",
+        "parent": null,
+        "path": "/x/Table/contact.user",
+        "visible_menu": 1,
+        "children": [
+          {
+            "blocks": 0,
+            "icon": "icon-book",
+            "name": "员工",
+            "id": 910,
+            "parent": 900,
+            "path": "/x/Table/contact.user",
+            "visible_menu": 1
+          },
+          {
+            "blocks": 0,
+            "icon": "icon-book",
+            "name": "部门列表",
+            "id": 920,
+            "parent": 900,
+            "path": "/x/Table/contact.department",
+            "visible_menu": 1
+          },
+          {
+            "blocks": 0,
+            "icon": "icon-square",
+            "id": 930,
+            "name": "物品管理",
+            "parent": 900,
+            "path": "/x/Table/admin.goods",
+            "visible_menu": 1
+          }
+        ]
+      }
+    ],
+    "setting": []
+  }
 }

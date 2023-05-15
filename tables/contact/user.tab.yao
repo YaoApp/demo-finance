@@ -28,7 +28,7 @@
           "width": 3,
           "action": {
             "Common.openModal": {
-              "width": 640,
+              "width": 1000,
               "Form": {
                 "type": "edit",
                 "model": "contact.user"
@@ -76,7 +76,7 @@
           {
             "action": {
               "Common.openModal": {
-                "width": 640,
+                "width": 1000,
                 "Form": {
                   "type": "view",
                   "model": "contact.user"

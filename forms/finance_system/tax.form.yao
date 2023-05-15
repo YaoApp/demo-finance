@@ -8,6 +8,42 @@
     }
   },
   "layout": {
+    "actions": [
+      {
+        "title": "保存",
+        "icon": "icon-check",
+
+        "showWhenAdd": true,
+
+        "style": "primary",
+        "action": [
+          {
+            "name": "Submit",
+            "type": "Form.submit",
+            "payload": {}
+          },
+          {
+            "name": "Back",
+            "type": "Common.closeModal",
+            "payload": {}
+          }
+        ]
+      },
+      {
+        "title": "返回",
+        "divideLine": true,
+        "showWhenAdd": true,
+        "showWhenView": true,
+        "icon": "icon-arrow-left",
+        "action": [
+          {
+            "name": "closeModal",
+            "type": "Common.closeModal",
+            "payload": {}
+          }
+        ]
+      }
+    ],
     "form": {
       "sections": [
         {
@@ -218,28 +254,22 @@
       "销项税发票预计数据库": {
         "bind": "pre_sale_tax",
         "edit": {
-          "type": "DynamicList",
-          "props": {
-            "setting": "setting/tax"
-          }
+          "type": "List",
+          "props": { "name": "tax", "showLabel": false }
         }
       },
       "进项税发票预计数据库": {
         "bind": "pre_import_tax",
         "edit": {
-          "type": "DynamicList",
-          "props": {
-            "setting": "setting/tax"
-          }
+          "type": "List",
+          "props": { "name": "tax", "showLabel": false }
         }
       },
       "进项税发票实际数据库": {
         "bind": "import_tax",
         "edit": {
-          "type": "DynamicList",
-          "props": {
-            "setting": "setting/tax"
-          }
+          "type": "List",
+          "props": { "name": "tax", "showLabel": false }
         }
       }
     }

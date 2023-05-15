@@ -1,0 +1,268 @@
+{
+  "name": "现有资金",
+  "action": {
+    "bind": {
+      "model": "finance_system.account",
+      "option": {
+        "withs": {}
+      }
+    }
+  },
+  "layout": {
+    "primary": "id",
+    "header": {
+      "preset": {},
+      "actions": []
+    },
+    "filter": {
+      "columns": [
+        {
+          "name": "名称",
+          "width": 4
+        }
+      ],
+      "actions": [
+        {
+          "icon": "icon-plus",
+          "width": 3,
+          "action": {
+            "Common.openModal": {
+              "width": 1000,
+              "Form": {
+                "type": "edit",
+                "model": "finance_system.account"
+              }
+            }
+          },
+          "title": "添加"
+        }
+      ]
+    },
+    "table": {
+      "columns": [
+        {
+          "width": 200,
+          "name": "账户名称"
+        },
+        {
+          "width": 200,
+          "name": "开户类型"
+        },
+        {
+          "name": "开户行",
+          "width": 150
+        },
+        {
+          "name": "收款账户账号",
+          "width": 150
+        },
+        {
+          "width": 200,
+          "name": "账户余额"
+        },
+        {
+          "name": "开户日期",
+          "width": 150
+        },
+        {
+          "name": "状态",
+          "width": 150
+        }
+      ],
+      "operation": {
+        "fold": false,
+        "actions": [
+          {
+            "action": {
+              "Common.openModal": {
+                "width": 1000,
+                "Form": {
+                  "type": "view",
+                  "model": "finance_system.account"
+                }
+              }
+            },
+            "title": "查看",
+            "icon": "icon-eye"
+          },
+          {
+            "title": "编辑",
+            "icon": "icon-edit-2",
+            "action": {
+              "Common.openModal": {
+                "Form": {
+                  "type": "edit",
+                  "model": "finance_system.account"
+                }
+              }
+            }
+          },
+          {
+            "icon": "icon-trash-2",
+            "action": {
+              "Table.delete": {}
+            },
+            "style": "danger",
+            "confirm": {
+              "title": "提示",
+              "desc": "确认删除，删除后数据无法恢复？"
+            },
+            "title": "删除"
+          }
+        ]
+      }
+    }
+  },
+  "fields": {
+    "filter": {
+      "名称": {
+        "bind": "where.name.match",
+        "edit": {
+          "type": "Input",
+          "compute": "Trim",
+          "props": {
+            "placeholder": "请输入名称搜索"
+          }
+        }
+      }
+    },
+    "table": {
+      "账户名称": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "name"
+        },
+        "bind": "name",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "开户类型": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "type"
+        },
+        "bind": "type",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "开户行": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "bank"
+        },
+        "bind": "bank",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "收款账户账号": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "account"
+        },
+        "bind": "account",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "开户行地址": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "address"
+        },
+        "bind": "address",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "银行号": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "bank_no"
+        },
+        "bind": "bank_no",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "网点地址": {
+        "edit": {
+          "props": {},
+          "type": "Input",
+          "bind": "detail"
+        },
+        "bind": "detail",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+
+      "账户余额": {
+        "edit": {
+          "props": {
+            "type": "number"
+          },
+          "type": "Input",
+          "bind": "total_money"
+        },
+        "bind": "total_money",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "开户日期": {
+        "edit": {
+          "type": "DatePicker",
+          "bind": "add_time",
+          "props": {}
+        },
+        "bind": "add_time",
+        "view": {
+          "props": {
+            "format": "YYYY-MM-DD"
+          },
+          "type": "Text"
+        }
+      },
+      "状态": {
+        "edit": {
+          "props": {
+            "options": [
+              {
+                "labe": "::正常",
+                "value": "正常"
+              },
+              {
+                "labe": "::停用",
+                "value": "停用"
+              }
+            ],
+            "placeholder": "请选择"
+          },
+          "type": "Select"
+        },
+        "bind": "status",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      }
+    }
+  }
+}

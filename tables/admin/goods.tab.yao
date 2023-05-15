@@ -1,16 +1,11 @@
 {
-  "name": "部门",
+  "name": "行政管理",
   "action": {
     "bind": {
-      "model": "contact.department",
+      "model": "admin.goods",
       "option": {
-        "withs": { "parent": {} }
+        "withs": { "user": {} }
       }
-    },
-    "search": {
-      "guard": "-",
-      "process": "scripts.contact.department.Department",
-      "default": [null, 1, 2]
     }
   },
   "layout": {
@@ -22,7 +17,7 @@
     "filter": {
       "columns": [
         {
-          "name": "部门名称",
+          "name": "名称",
           "width": 4
         }
       ],
@@ -32,10 +27,10 @@
           "width": 3,
           "action": {
             "Common.openModal": {
-              "width": 640,
+              "width": 1000,
               "Form": {
                 "type": "edit",
-                "model": "contact.department"
+                "model": "goods"
               }
             }
           },
@@ -46,16 +41,13 @@
     "table": {
       "columns": [
         {
-          "width": 200,
-          "name": "部门名称"
+          "name": "名称"
         },
         {
-          "name": "排序",
-          "width": 250
+          "name": "状态"
         },
         {
-          "name": "上级部门",
-          "width": 250
+          "name": "负责人"
         }
       ],
       "operation": {
@@ -64,10 +56,10 @@
           {
             "action": {
               "Common.openModal": {
-                "width": 640,
+                "width": 1000,
                 "Form": {
                   "type": "view",
-                  "model": "contact.department"
+                  "model": "goods"
                 }
               }
             },
@@ -81,7 +73,7 @@
               "Common.openModal": {
                 "Form": {
                   "type": "edit",
-                  "model": "contact.department"
+                  "model": "goods"
                 }
               }
             }
@@ -104,19 +96,19 @@
   },
   "fields": {
     "filter": {
-      "部门名称": {
+      "名称": {
         "bind": "where.name.match",
         "edit": {
           "type": "Input",
           "compute": "Trim",
           "props": {
-            "placeholder": "请输入名称搜索"
+            "placeholder": "名称"
           }
         }
       }
     },
     "table": {
-      "部门名称": {
+      "名称": {
         "view": {
           "props": {},
           "type": "Text"
@@ -128,33 +120,31 @@
         },
         "bind": "name"
       },
-      "排序": {
-        "bind": "order",
-        "view": {
-          "type": "Text",
-          "props": {}
-        },
+      "状态": {
         "edit": {
           "props": {
-            "type": "number"
-          },
-          "type": "Input",
-          "bind": "order"
-        }
-      },
-      "上级部门": {
-        "edit": {
-          "props": {
-            "xProps": {
-              "$remote": {
-                "process": "scripts.contact.department.GetSelect",
-                "query": { "id": ":id" }
+            "options": [
+              {
+                "labe": "::闲置",
+                "value": "闲置"
+              },
+              {
+                "labe": "::外借",
+                "value": "外借"
               }
-            }
+            ],
+            "placeholder": "请选择"
           },
           "type": "Select"
         },
-        "bind": "parent_name",
+        "bind": "status",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      },
+      "负责人": {
+        "bind": "user.name",
         "view": {
           "props": {},
           "type": "Text"

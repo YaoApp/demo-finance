@@ -1,0 +1,40 @@
+{
+  "name": "记录表",
+  "action": { "bind": { "model": "finance_system.finance_alarm" } },
+  "layout": {
+    "list": {
+      "props": {},
+      "columns": [
+        { "name": "日期", "width": 12 },
+        { "name": "金额", "width": 12 }
+      ]
+    }
+  },
+  "fields": {
+    "list": {
+      "日期": {
+        "edit": {
+          "props": {},
+          "type": "DatePicker"
+        },
+        "bind": "date",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      },
+
+      "金额": {
+        "bind": "total_money",
+        "view": {
+          "type": "Text",
+          "props": {}
+        },
+        "edit": {
+          "props": { "type": "number" },
+          "type": "Input"
+        }
+      }
+    }
+  }
+}

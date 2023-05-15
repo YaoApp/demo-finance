@@ -1,44 +1,82 @@
 {
   "action": {
     "bind": {
-      "model": "finance_system.finance_alarm",
+      "model": "finance_system.debt",
       "option": {
-        "withs": {}
+        "withs": { "project": {}, "user": {}, "company": {} }
       }
     }
   },
   "layout": {
+    "actions": [
+      {
+        "title": "保存",
+        "icon": "icon-check",
+
+        "showWhenAdd": true,
+
+        "style": "primary",
+        "action": [
+          {
+            "name": "Submit",
+            "type": "Form.submit",
+            "payload": {}
+          },
+          {
+            "name": "Back",
+            "type": "Common.closeModal",
+            "payload": {}
+          }
+        ]
+      },
+      {
+        "title": "返回",
+        "divideLine": true,
+        "showWhenAdd": true,
+        "showWhenView": true,
+        "icon": "icon-arrow-left",
+        "action": [
+          {
+            "name": "closeModal",
+            "type": "Common.closeModal",
+            "payload": {}
+          }
+        ]
+      }
+    ],
     "form": {
       "sections": [
         {
           "columns": [
             {
+              "name": "所属项目",
+              "width": 12
+            },
+            {
               "width": 12,
-              "name": "名称"
+              "name": "类型"
             },
             {
-              "name": "分类",
+              "name": "项目负责人",
+              "width": 12
+            },
+
+            {
+              "name": "负债单位",
               "width": 12
             },
             {
-              "name": "事项",
+              "name": "债权单位",
               "width": 12
             },
             {
-              "name": "已发生的金额",
-              "width": 12
+              "width": 12,
+              "name": "未回款类型"
             },
+
             {
-              "name": "添加日期",
-              "width": 12
-            },
-            {
-              "width": 24,
-              "name": "备注"
-            },
-            {
-              "width": 24,
-              "name": "记录表"
+              "width": 12,
+              "name": "未回款金额"
             }
           ]
         }
@@ -63,7 +101,7 @@
           "icon": "icon-trash-2",
           "action": {
             "Form.delete": {
-              "pathname": "/x/Table/finance.bond"
+              "pathname": "/x/Table/finance_system.debt"
             }
           },
           "style": "danger"
@@ -73,78 +111,86 @@
   },
   "fields": {
     "form": {
-      "名称": {
-        "edit": {
-          "props": {},
-          "type": "Input",
-          "bind": "name"
-        },
-        "bind": "name",
+      "所属项目": {
+        "bind": "project_id",
         "view": {
+          "bind": "project.name",
+          "props": {},
+          "type": "Text"
+        },
+        "edit": {
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "scripts.project.GetSelect",
+                "query": {}
+              }
+            }
+          },
+          "type": "Select"
+        }
+      },
+      "项目负责人": {
+        "edit": {
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "scripts.contact.user.GetSelect",
+                "query": {}
+              }
+            }
+          },
+          "type": "Select"
+        },
+        "bind": "user_id",
+        "view": {
+          "bind": "user.name",
           "props": {},
           "type": "Text"
         }
       },
-      "分类": {
+      "负债单位": {
         "edit": {
           "props": {
-            "options": [
-              {
-                "labe": "::6个月后的银行余额",
-                "value": "6个月后的银行余额"
-              },
-              {
-                "labe": "::短期债权合计",
-                "value": "短期债权合计"
-              },
-              {
-                "labe": "::短期债务合计",
-                "value": "短期债务合计"
-              },
-              {
-                "labe": "::如果控制在银行余额200万左右需要还款",
-                "value": "如果控制在银行余额200万左右需要还款"
-              },
-              {
-                "labe": "::银行借款(长期债务)",
-                "value": "银行借款(长期债务)"
-              },
-              {
-                "labe": "::月利息",
-                "value": "月利息"
-              },
-              {
-                "labe": "::现金流实际",
-                "value": "现金流实际"
-              },
-              {
-                "labe": "::月现金流预计",
-                "value": "月现金流预计"
-              },
-              {
-                "labe": "::月银行余额实际",
-                "value": "月银行余额实际"
-              },
-              {
-                "labe": "::债务",
-                "value": "债务"
-              },
-              {
-                "labe": "::债权",
-                "value": "债权"
+            "xProps": {
+              "$remote": {
+                "process": "scripts.company.GetSelect",
+                "query": {}
               }
-            ],
-            "placeholder": "请选择"
+            }
           },
-          "type": "Select"
+          "type": "Select",
+          "bind": "company_id"
         },
-        "bind": "type",
+        "bind": "company_id",
         "view": {
-          "type": "Text",
-          "props": {}
+          "bind": "company.name",
+          "props": {},
+          "type": "Text"
         }
       },
-      "事项": {
+      "债权单位": {
+        "edit": {
+          "props": {
+            "xProps": {
+              "$remote": {
+                "process": "scripts.company.GetSelect",
+                "query": {}
+              }
+            }
+          },
+          "type": "Select",
+          "bind": "debt_company_id"
+        },
+        "bind": "debt_company_id",
+        "view": {
+          "bind": "debt_company.name",
+          "props": {},
+          "type": "Text"
+        }
+      },
+
+      "未回款类型": {
         "edit": {
           "props": {
             "options": [
@@ -209,26 +255,37 @@
           },
           "type": "Select"
         },
+        "bind": "type",
+        "view": {
+          "type": "Text",
+          "props": {}
+        }
+      },
+      "类型": {
+        "edit": {
+          "props": {
+            "options": [
+              {
+                "labe": "::债权",
+                "value": "债权"
+              },
+              {
+                "labe": "::债务",
+                "value": "债务"
+              }
+            ],
+            "placeholder": "请选择"
+          },
+          "type": "Select"
+        },
         "bind": "kind",
         "view": {
           "type": "Text",
           "props": {}
         }
       },
-      "备注": {
-        "edit": {
-          "props": {},
-          "type": "Input",
-          "bind": "account"
-        },
-        "bind": "account",
-        "view": {
-          "props": {},
-          "type": "Text"
-        }
-      },
 
-      "已发生的金额": {
+      "未回款金额": {
         "edit": {
           "props": {
             "type": "number"
@@ -241,31 +298,8 @@
           "props": {},
           "type": "Text"
         }
-      },
-      "添加日期": {
-        "edit": {
-          "type": "DatePicker",
-          "bind": "add_time",
-          "props": {}
-        },
-        "bind": "add_time",
-        "view": {
-          "props": {
-            "format": "YYYY-MM-DD"
-          },
-          "type": "Text"
-        }
-      },
-      "记录表": {
-        "bind": "detail",
-        "edit": {
-          "type": "DynamicList",
-          "props": {
-            "setting": "setting/finance_detail"
-          }
-        }
       }
     }
   },
-  "name": "现有资金"
+  "name": "债权"
 }

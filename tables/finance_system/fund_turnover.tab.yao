@@ -31,8 +31,12 @@
           "icon": "icon-plus",
           "width": 3,
           "action": {
-            "Common.historyPush": {
-              "pathname": "/x/Form/finance_system.fund_turnover/0/edit"
+            "Common.openModal": {
+              "width": 1000,
+              "Form": {
+                "type": "edit",
+                "model": "finance_system.fund_turnover"
+              }
             }
           },
           "title": "添加"
@@ -97,7 +101,7 @@
           {
             "action": {
               "Common.openModal": {
-                "width": 640,
+                "width": 1000,
                 "Form": {
                   "type": "view",
                   "model": "finance_system.fund_turnover"

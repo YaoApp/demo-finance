@@ -1,10 +1,10 @@
 {
-  "name": "税务核算",
+  "name": "财务评价",
   "action": {
     "bind": {
-      "model": "finance_system.tax",
+      "model": "finance_system.evaluate",
       "option": {
-        "withs": { "project": {} }
+        "withs": {}
       }
     }
   },
@@ -17,11 +17,7 @@
     "filter": {
       "columns": [
         {
-          "name": "合同类型",
-          "width": 4
-        },
-        {
-          "name": "付款方式",
+          "name": "类型",
           "width": 4
         },
         {
@@ -34,8 +30,12 @@
           "icon": "icon-plus",
           "width": 3,
           "action": {
-            "Common.historyPush": {
-              "pathname": "/x/Form/finance_system.tax/0/edit"
+            "Common.openModal": {
+              "width": 1000,
+              "Form": {
+                "type": "edit",
+                "model": "finance_system.evaluate"
+              }
             }
           },
           "title": "添加"
@@ -45,32 +45,32 @@
     "table": {
       "columns": [
         {
-          "name": "月份",
-          "width": 100
+          "name": "类型",
+          "width": 250
         },
         {
           "width": 100,
-          "name": "合同类型"
+          "name": "月份"
         },
         {
           "width": 150,
-          "name": "类型"
+          "name": "盈利毛利率"
         },
         {
           "width": 150,
-          "name": "付款方式"
+          "name": "销售净利率"
         },
         {
-          "width": 250,
-          "name": "项目名称"
+          "width": 150,
+          "name": "资产净利率"
         },
         {
-          "name": "预计增值税",
+          "name": "净值报酬率",
           "width": 150
         },
         {
           "width": 100,
-          "name": "预计附加税额"
+          "name": "市盈率"
         }
       ],
       "operation": {
@@ -79,10 +79,10 @@
           {
             "action": {
               "Common.openModal": {
-                "width": 640,
+                "width": 1000,
                 "Form": {
                   "type": "view",
-                  "model": "finance_system.tax"
+                  "model": "finance_system.evaluate"
                 }
               }
             },
@@ -96,7 +96,7 @@
               "Common.openModal": {
                 "Form": {
                   "type": "edit",
-                  "model": "finance_system.tax"
+                  "model": "finance_system.evaluate"
                 }
               }
             }
@@ -119,43 +119,20 @@
   },
   "fields": {
     "filter": {
-      "合同类型": {
+      "类型": {
         "edit": {
           "props": {
             "options": [
               {
-                "labe": "::销售合同",
-                "value": "销售合同"
-              },
-              {
-                "labe": "::采购合同",
-                "value": "采购合同"
+                "labe": "::企业盈利能力评价",
+                "value": "企业盈利能力评价"
               }
             ],
             "placeholder": "请选择"
           },
           "type": "Select"
         },
-        "bind": "where.contract_type.eq"
-      },
-      "付款方式": {
-        "edit": {
-          "props": {
-            "options": [
-              {
-                "labe": "::贷款",
-                "value": "贷款"
-              },
-              {
-                "labe": "::自有资金",
-                "value": "自有资金"
-              }
-            ],
-            "placeholder": "请选择"
-          },
-          "type": "Select"
-        },
-        "bind": "where.pay_way.eq"
+        "bind": "where.type.eq"
       },
       "月份": {
         "edit": {
@@ -166,97 +143,74 @@
       }
     },
     "table": {
-      "项目名称": {
-        "edit": {
-          "props": {
-            "xProps": {
-              "$remote": {
-                "process": "scripts.project.GetSelect",
-                "query": {}
-              }
-            }
-          },
-          "type": "Select"
-        },
-        "bind": "project_id",
-        "view": {
-          "bind": "project.name",
-          "props": {},
-          "type": "Text"
-        }
-      },
-      "预计增值税": {
+      "盈利毛利率": {
         "edit": {
           "props": {
             "type": "number"
           },
           "type": "Input",
-          "bind": "pre_incr_tax"
+          "bind": "profit_rate"
         },
-        "bind": "pre_incr_tax",
+        "bind": "profit_rate",
         "view": {
           "props": {},
           "type": "Text"
         }
       },
-      "预计附加税额": {
+      "销售净利率": {
         "edit": {
           "props": {
             "type": "number"
           },
           "type": "Input",
-          "bind": "pre_add_tax"
+          "bind": "sale_rate"
         },
-        "bind": "pre_add_tax",
+        "bind": "sale_rate",
         "view": {
           "props": {},
           "type": "Text"
         }
       },
-      "合同类型": {
+      "资产净利率": {
         "edit": {
           "props": {
-            "options": [
-              {
-                "labe": "::销售合同",
-                "value": "销售合同"
-              },
-              {
-                "labe": "::采购合同",
-                "value": "采购合同"
-              }
-            ],
-            "placeholder": "请选择"
+            "type": "number"
           },
-          "type": "Select"
+          "type": "Input",
+          "bind": "property_rate"
         },
-        "bind": "contract_type",
+        "bind": "property_rate",
         "view": {
-          "type": "Text",
-          "props": {}
+          "props": {},
+          "type": "Text"
         }
       },
-      "付款方式": {
+      "净值报酬率": {
         "edit": {
           "props": {
-            "options": [
-              {
-                "labe": "::贷款",
-                "value": "贷款"
-              },
-              {
-                "labe": "::自有资金",
-                "value": "自有资金"
-              }
-            ],
-            "placeholder": "请选择"
+            "type": "number"
           },
-          "type": "Select"
+          "type": "Input",
+          "bind": "award_rate"
         },
-        "bind": "pay_way",
+        "bind": "award_rate",
         "view": {
-          "type": "Text",
-          "props": {}
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "市盈率": {
+        "edit": {
+          "props": {
+            "type": "number"
+          },
+          "type": "Input",
+          "bind": "market_rate"
+        },
+        "bind": "market_rate",
+        "view": {
+          "props": {},
+          "type": "Text"
         }
       },
       "类型": {
@@ -264,12 +218,8 @@
           "props": {
             "options": [
               {
-                "labe": "::主机",
-                "value": "主机"
-              },
-              {
-                "labe": "::外购件",
-                "value": "外购件"
+                "labe": "::企业盈利能力评价",
+                "value": "企业盈利能力评价"
               }
             ],
             "placeholder": "请选择"
