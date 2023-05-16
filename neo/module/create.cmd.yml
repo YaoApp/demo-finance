@@ -1,0 +1,46 @@
+# Create a module of yao
+# yao run neo.module.Create 帮我生成个订单模块
+name: Create a module
+use: module
+connector: gpt-3_5-turbo
+process: studio.module.Create
+args:
+  - name: data
+    type: Array
+    description: The data sets to generate
+    required: true
+    default: []
+
+actions:
+  - name: Redirect to the generated module
+    type: "Common.historyPush"
+    payload:
+      pathname: "/x/Table/[[$ExecCommand.result.name]]"
+      public: false
+
+prepare:
+  before: studio.module.CreateBefore
+  after: studio.module.CreateAfter
+  option:
+    temperature: 0.6
+
+  prompts:
+    - role: system
+      content: "{{ template }}"
+
+    - role: system
+      content: "{{ explain }}"
+
+    - role: system
+      content: |
+        - According to my description, according to the template given to you, generate a similar JSON data.
+        - The Data is what I want to generate by template.
+        - Reply to me with a message in JSON format only.
+        - Do not explain your answer, and do not use punctuation.
+
+description: |
+  Create a module
+
+optional:
+  confirm: neo.Exec
+  autopilot: true

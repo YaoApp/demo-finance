@@ -12,6 +12,9 @@
   },
   "optional": {
     "hideNotification": true,
-    "hideSetting": false
+    "hideSetting": false,
+    "neo": {
+      "api": "/neo"
+    }
   }
 }
