@@ -66,8 +66,7 @@ function CreateAfter(content) {
 
   if (columns.length > 0) {
     // Print data preview
-    ssWrite(`\n`);
-    ssWrite(`| label | name | type | Searchable | Table | Form |\n`);
+    ssWrite(`\r\n| label | name | type | Searchable | Table | Form |\n`);
     ssWrite(`| ----- | ---- | ---- | ---------- | ----- | ---- |\n`);
     columns.forEach((item) => {
       console.log(item);
@@ -164,14 +163,15 @@ function Create(payload) {
   let id = payload.table.name;
   let ex = load(id);
   if (ex) {
-    console.log(ex);
+    console.log(ex, ex.message);
     throw new Exception(ex.message, 500);
   }
 
   // model migrage
   ex = migrateModel(id);
   if (ex) {
-    throw new Exception(ex.message, 500);
+    console.log(ex, ex.message);
+    // throw new Exception(ex.message, 500);
   }
 
   return { path: `/x/Table/${payload.table.name}`, name: payload.table.name };

@@ -12,8 +12,8 @@ args:
     default: []
 
 actions:
-  - name: TableSearch
-    type: "Table.search"
+  - name: Refetch Data
+    type: "Common.refetch"
     payload: {}
 
 prepare:
@@ -40,5 +40,5 @@ description: |
   Generate test data for the table
 
 optional:
-  confirm: neo.Exec
+  confirm: true
   autopilot: true

@@ -34,6 +34,7 @@ actions:
     type: "Common.historyPush"
     payload:
       pathname: "{{ iframe }}"
+      neo: true
       public: false
 
 prepare:
