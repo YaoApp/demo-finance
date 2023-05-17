@@ -56,11 +56,11 @@ yao start
 [安装 Docker](https://docs.docker.com/get-docker/)
 
 ```
-docker pull yaoapp/demo-finance:0.10.2-amd64
+docker pull yaoapp/demo-finance:yao-0.10.3-dev-amd64
 ```
 
 ```bash
-docker run -d --restart unless-stopped --name demo-finance -p 5099:5099  yaoapp/demo-finance:0.10.2-amd64
+docker run -d --restart unless-stopped --name demo-finance -p 5099:5099  yaoapp/demo-finance:yao-0.10.3-dev-amd64
 ```
 
 登录管理后台
