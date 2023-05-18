@@ -60,7 +60,7 @@ docker pull yaoapp/demo-finance:yao-0.10.3-dev-amd64
 ```
 
 ```bash
-docker run -d --restart unless-stopped --name demo-finance -p 5099:5099  yaoapp/demo-finance:yao-0.10.3-dev-amd64
+docker run -d --restart unless-stopped --name demo-finance -p 5099:5099 -p 5077:5077 yaoapp/demo-finance:yao-0.10.3-dev-amd64
 ```
 
 登录管理后台
